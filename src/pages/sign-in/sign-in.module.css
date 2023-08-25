@@ -1,0 +1,15 @@
+.box {
+  margin: 80px auto 0;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  max-width: 320px;
+  gap: 8px;
+  margin: 0 auto;
+}
+
+.error {
+  color: #c92c6d;
+}
