@@ -11,3 +11,5 @@ dist
 stats.html
 
 .env
+config.json
+backup.json

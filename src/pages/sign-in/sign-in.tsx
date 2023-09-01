@@ -1,10 +1,12 @@
+//libs
 import { useNavigate, Link } from 'react-router-dom';
 import GoogleButton from 'react-google-button';
 import { useForm } from 'react-hook-form';
-import { signIn, signInWithGoogle } from 'utils/firesbase';
-
+//api
+import { signInRequest, signInWithGoogleRequest } from 'api/user';
+//constants
 import { APPLICATION_URLS } from 'utils/constants';
-
+//styles
 import s from './sign-in.module.css';
 
 type SignUpFormValues = {
@@ -24,7 +26,7 @@ export function SignIn() {
 
   const onSubmit = async (data: SignUpFormValues) => {
     try {
-      await signIn(data.email, data.password);
+      await signInRequest(data.email, data.password);
 
       navigate(APPLICATION_URLS.dashboard);
     } catch (e) {
@@ -44,7 +46,7 @@ export function SignIn() {
         />
         {errors.password && <span className={s.error}>This field is required</span>}
         <button type="submit">Login</button>
-        <GoogleButton onClick={signInWithGoogle} label="Sign in with Google" />
+        <GoogleButton onClick={signInWithGoogleRequest} label="Sign in with Google" />
         <Link to={APPLICATION_URLS.signUp}>create account</Link>
       </form>
     </div>

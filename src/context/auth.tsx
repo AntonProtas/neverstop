@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
 import { onAuthStateChanged, type User } from 'firebase/auth';
-import { auth } from 'utils/firesbase';
+import { auth } from 'api/firesbase';
 
 const UserContext = createContext<{
   user: User | null;

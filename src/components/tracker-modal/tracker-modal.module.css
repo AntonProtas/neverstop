@@ -1,0 +1,27 @@
+.box {
+  display: flex;
+  width: 100%;
+  max-width: 420px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #332c39;
+  padding: 48px 24px;
+  border-radius: 12px;
+}
+
+.form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.box .form button {
+  margin-right: 0;
+}
+
+.error {
+  color: #c92c6d;
+}

@@ -1,4 +1,13 @@
 .box {
   border-radius: 12px;
   background-color: #6554af;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.fields {
+  padding: 8px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
