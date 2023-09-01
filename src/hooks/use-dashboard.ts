@@ -1,7 +1,9 @@
 //libs
 import { useEffect, useState } from 'react';
-//libs
+import { toast } from 'react-toastify';
 import { onSnapshot } from 'firebase/firestore';
+//helpers
+import { parseError } from 'helpers/data-transform';
 //api
 import { getDashboardsQuery } from 'api/dashboard';
 
@@ -32,7 +34,7 @@ export function useDashboard({ userId }: { userId?: string }) {
           });
         });
       },
-      (error) => console.log(error),
+      (error) => toast.error(parseError(error)),
     );
 
     return () => {
