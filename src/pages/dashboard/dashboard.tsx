@@ -1,6 +1,7 @@
 //libs
 import { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 //context
 import { UserAuth } from 'context/auth';
 //components
@@ -9,10 +10,11 @@ import { TrackerModal } from 'components/tracker-modal/tracker-modal';
 //hooks
 import { useDashboard } from 'hooks/use-dashboard';
 import { useWidgets } from 'hooks/use-widgets';
-
 //api
 import { logOutRequest } from 'api/user';
 import { createWidgetRequest, updateWidgetRequest, deleteWidgetRequest } from 'api/widget';
+//helpers
+import { parseError } from 'helpers/data-transform';
 //constants
 import { APPLICATION_URLS } from 'utils/constants';
 //styles
@@ -23,8 +25,12 @@ export function Dashboard() {
   const navigate = useNavigate();
   const { user } = UserAuth();
 
-  const { id: dashboardId, order } = useDashboard({ userId: user?.uid });
-  const { widgets } = useWidgets({ dashboardId });
+  const {
+    id: dashboardId,
+    order,
+    isLoading: isDashboardLoading,
+  } = useDashboard({ userId: user?.uid });
+  const { widgets, isLoading: isWidgetsLoading } = useWidgets({ dashboardId });
 
   const [trackerModal, setTrackerModal] = useState<{
     isOpen: boolean;
@@ -65,8 +71,8 @@ export function Dashboard() {
       await createWidgetRequest(dashboardId, data);
 
       closeModal();
-    } catch (e) {
-      console.log(e);
+    } catch (error) {
+      toast.error(parseError(error));
     }
   };
 
@@ -79,8 +85,8 @@ export function Dashboard() {
       await updateWidgetRequest(dashboardId, data);
 
       closeModal();
-    } catch (e) {
-      console.log(e);
+    } catch (error) {
+      toast.error(parseError(error));
     }
   };
 
@@ -93,8 +99,8 @@ export function Dashboard() {
       await deleteWidgetRequest(dashboardId, id);
 
       closeModal();
-    } catch (e) {
-      console.log(e);
+    } catch (error) {
+      toast.error(parseError(error));
     }
   };
 
@@ -102,8 +108,8 @@ export function Dashboard() {
     try {
       await logOutRequest();
       navigate(APPLICATION_URLS.signIn);
-    } catch (e) {
-      console.log(e);
+    } catch (error) {
+      toast.error(parseError(error));
     }
   };
 
@@ -115,6 +121,7 @@ export function Dashboard() {
       <button className={s.logOut} onClick={openCreateModal}>
         add tracker
       </button>
+      {(isDashboardLoading || isWidgetsLoading) && <span>...loading</span>}
       <div className={s.box}>
         {(order || [])
           .filter((id) => id in hashIdToWidget)

@@ -1,3 +1,5 @@
+import { FirestoreError } from 'firebase/firestore';
+
 export type PickKeysByValueType<T extends object, U> = keyof Pick<
   T,
   {
@@ -16,4 +18,20 @@ export function toHash<
     }
     return acm;
   }, {});
+}
+
+export function transformCodeToMessage(code: string) {
+  return code.split('/')[1].replaceAll('-', ' ');
+}
+
+export function parseError(e: unknown) {
+  const error = e as FirestoreError;
+
+  if ('name' in error && error.name === 'FirebaseError') {
+    return transformCodeToMessage(error.code);
+  } else if (error.message) {
+    return error.message;
+  } else {
+    return 'unexpected error';
+  }
 }

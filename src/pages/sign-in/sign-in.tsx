@@ -2,8 +2,11 @@
 import { useNavigate, Link } from 'react-router-dom';
 import GoogleButton from 'react-google-button';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 //api
 import { signInRequest, signInWithGoogleRequest } from 'api/user';
+//helpers
+import { parseError } from 'helpers/data-transform';
 //constants
 import { APPLICATION_URLS } from 'utils/constants';
 //styles
@@ -29,8 +32,8 @@ export function SignIn() {
       await signInRequest(data.email, data.password);
 
       navigate(APPLICATION_URLS.dashboard);
-    } catch (e) {
-      console.log(e);
+    } catch (error) {
+      toast.error(parseError(error));
     }
   };
 
