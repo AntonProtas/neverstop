@@ -3,6 +3,7 @@
   margin: 0;
   font-size: 18px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  list-style-type: none;
 }
 
 a {
@@ -20,7 +21,3 @@ button {
 button:not(:last-of-type) {
   margin-right: 6px;
 }
-
-/*
-https://colorhunt.co/palette/f0eeed609ea2c92c6d332c39
-*/
