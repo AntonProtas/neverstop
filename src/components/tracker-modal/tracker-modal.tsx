@@ -19,7 +19,7 @@ type TrackerModalProps = {
 
 const DEFAULT_TRACKER = {
   name: 'test name',
-  value: 0,
+  value: 30,
   initial_value: 25,
   target_value: 100,
   unit: 'days',
@@ -53,6 +53,7 @@ export function TrackerModal({
   }, [tracker, reset]);
 
   const targetValue = watch('target_value');
+  const initialValue = watch('initial_value');
 
   return (
     <Modal
@@ -100,7 +101,7 @@ export function TrackerModal({
             valueAsNumber: true,
             required: true,
             max: targetValue,
-            min: 0,
+            min: initialValue || 0,
           })}
         />
         {errors.value && (

@@ -1,15 +1,16 @@
-import { Router } from 'components/router/router';
-import { AuthProvider } from 'context/auth';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+//libs
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { TouchBackend } from 'react-dnd-touch-backend';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+//components
+import { Router } from 'components/router/router';
+import { AuthProvider } from 'context/auth';
+//helpers
+import { getIsMobile } from 'helpers/common';
 
 function App() {
-  const isMobileBrowser =
-    navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/iPhone/i);
-
   return (
     <AuthProvider>
       <ToastContainer
@@ -24,7 +25,7 @@ function App() {
         pauseOnHover
         theme="dark"
       />
-      <DndProvider backend={isMobileBrowser ? TouchBackend : HTML5Backend}>
+      <DndProvider backend={getIsMobile() ? TouchBackend : HTML5Backend}>
         <Router />
       </DndProvider>
     </AuthProvider>
