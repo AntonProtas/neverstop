@@ -1,4 +1,4 @@
-import { addDoc, collection, Timestamp, query, where } from 'firebase/firestore';
+import { addDoc, collection, Timestamp, query, where, updateDoc, doc } from 'firebase/firestore';
 
 import db from './firesbase';
 
@@ -13,6 +13,12 @@ export async function createInitialDashboardRequest(userId: string) {
     user_id: userId,
     widgets_order: [],
     created: Timestamp.now(),
+  });
+}
+
+export async function updateOrderRequest(dashboardId: string, order: string[]) {
+  return await updateDoc(doc(db, 'dashboards', dashboardId), {
+    widgets_order: order,
   });
 }
 

@@ -1,7 +1,8 @@
 //libs
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { motion, AnimatePresence } from 'framer-motion';
 //context
 import { UserAuth } from 'context/auth';
 //components
@@ -15,6 +16,7 @@ import { logOutRequest } from 'api/user';
 import { createWidgetRequest, updateWidgetRequest, deleteWidgetRequest } from 'api/widget';
 //helpers
 import { parseError } from 'helpers/data-transform';
+import { updateOrderRequest } from 'api/dashboard';
 //constants
 import { APPLICATION_URLS } from 'utils/constants';
 //styles
@@ -61,6 +63,28 @@ export function Dashboard() {
       isOpen: false,
       tracker: null,
     });
+
+  const moveTracker = useCallback(
+    async (dragIndex: number, hoverIndex: number) => {
+      try {
+        if (!order || !dashboardId) {
+          return;
+        }
+
+        const dragItem = order[dragIndex];
+        const hoverItem = order[hoverIndex];
+        const newOrder = [...order];
+
+        newOrder[dragIndex] = hoverItem;
+        newOrder[hoverIndex] = dragItem;
+
+        await updateOrderRequest(dashboardId, [...newOrder]);
+      } catch (error) {
+        toast.error(parseError(error));
+      }
+    },
+    [order, dashboardId],
+  );
 
   const createWidget = async (data: Tracker) => {
     try {
@@ -122,18 +146,30 @@ export function Dashboard() {
         add tracker
       </button>
       {(isDashboardLoading || isWidgetsLoading) && <span>...loading</span>}
-      <div className={s.box}>
-        {(order || [])
-          .filter((id) => id in hashIdToWidget)
-          .map((id) => (
-            <Tracker
-              key={id}
-              tracker={hashIdToWidget[id]}
-              onDelete={deleteWidget}
-              onEdit={openEditModal}
-            />
-          ))}
-      </div>
+      <AnimatePresence initial={false}>
+        <div className={s.box}>
+          {(order || [])
+            .filter((id) => id in hashIdToWidget)
+            .map((id, index) => (
+              <motion.li
+                key={id}
+                layout
+                transition={{ duration: 0.3 }}
+                initial={{ x: -100, opacity: 0 }}
+                animate={{ x: 0, opacity: 1, transition: { duration: 0.5 } }}
+                exit={{ x: 100, opacity: 0 }}
+              >
+                <Tracker
+                  index={index}
+                  tracker={hashIdToWidget[id]}
+                  onDelete={deleteWidget}
+                  onEdit={openEditModal}
+                  onMove={moveTracker}
+                />
+              </motion.li>
+            ))}
+        </div>
+      </AnimatePresence>
       <TrackerModal
         isOpen={trackerModal.isOpen}
         isEdit={!!trackerModal.tracker}
