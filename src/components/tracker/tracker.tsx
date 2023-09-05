@@ -59,6 +59,7 @@ export function Tracker({ index, tracker, onEdit, onDelete, onMove }: TrackerPro
       data-handler-id={handlerId}
     >
       <div>
+        <button onClick={() => {}}>track</button>
         <button onClick={deleteClick}>delete</button>
         <button onClick={editClick}>edit</button>
       </div>
