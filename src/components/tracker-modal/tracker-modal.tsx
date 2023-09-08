@@ -14,7 +14,7 @@ type TrackerModalProps = {
   onClose: () => void;
   isOpen: boolean;
   isEdit?: boolean;
-  tracker: Tracker | null;
+  tracker?: Tracker;
 };
 
 const DEFAULT_TRACKER = {

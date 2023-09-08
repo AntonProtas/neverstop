@@ -44,3 +44,18 @@ export async function deleteWidgetRequest(dashboardId: string, widgetId: string)
 export function getWidgetsQuery(dashboardId: string) {
   return collection(db, 'dashboards', dashboardId, 'widgets');
 }
+
+export async function addTrackerProgressRequest(
+  dashboardId: string,
+  widgetId: string,
+  value: number,
+) {
+  return await updateDoc(doc(db, 'dashboards', dashboardId, 'widgets', widgetId), {
+    value,
+    updated: Timestamp.now(),
+    update_points: arrayUnion({
+      date: Timestamp.now(),
+      value,
+    }),
+  });
+}
