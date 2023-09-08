@@ -1,16 +1,18 @@
 //libs
+import cn from 'classnames';
 import { useEffect, type ReactNode } from 'react';
 import ReactModal from 'react-modal';
 //styles
 import s from './modal.module.css';
 
 type ModalProps = {
+  className?: string;
   children?: ReactNode;
 };
 
 export type ReactModalProps = ModalProps & ReactModal.Props;
 
-export function Modal({ isOpen, children, ...props }: ReactModalProps) {
+export function Modal({ isOpen, className, children, ...props }: ReactModalProps) {
   useEffect(() => {
     if (document) {
       document.body.style.overflow = isOpen ? 'hidden' : 'auto';
@@ -19,14 +21,14 @@ export function Modal({ isOpen, children, ...props }: ReactModalProps) {
 
   return (
     <ReactModal
-      className={s.box}
+      className={cn(s.box, className)}
       isOpen={isOpen}
       ariaHideApp={false}
       portalClassName={s.isSkipFocus}
       overlayClassName={s.overlay}
       {...props}
     >
-      <div>{children}</div>
+      {children}
     </ReactModal>
   );
 }

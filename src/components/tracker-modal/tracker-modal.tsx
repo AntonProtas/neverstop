@@ -57,7 +57,6 @@ export function TrackerModal({
 
   return (
     <Modal
-      className={s.box}
       onRequestClose={onClose}
       shouldCloseOnEsc
       shouldCloseOnOverlayClick
