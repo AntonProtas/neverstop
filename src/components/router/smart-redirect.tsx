@@ -6,7 +6,7 @@ import { APPLICATION_URLS } from 'utils/constants';
 export function SmartRedirect({ children }: { children: JSX.Element }) {
   const { user, isLoading } = UserAuth();
 
-  if (isLoading || !user) {
+  if (isLoading) {
     return <span>...loading user data</span>;
   }
 
