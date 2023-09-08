@@ -2,11 +2,13 @@
 import cn from 'classnames';
 import { useRef } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
+import { motion } from 'framer-motion';
+
 //components
 import { TrackForm, TrackFormValues } from 'components/track-form/track-form';
 //helpers
 import { getIsMobile } from 'helpers/common';
-import { DragItem, hoverDndElement } from './tracker.helpers';
+import { DragItem, boxButtonsAnimation, buttonAnimation, hoverDndElement } from './tracker.helpers';
 //styles
 import s from './tracker.module.css';
 
@@ -83,11 +85,19 @@ export function Tracker({
         <TrackForm onSubmit={submitTracking} tracker={tracker} onClose={onTrackModeClose} />
       ) : (
         <>
-          <div>
-            {tracker.target_value > tracker.value && <button onClick={trackModeOpen}>add</button>}
-            <button onClick={deleteClick}>delete</button>
-            <button onClick={editClick}>edit</button>
-          </div>
+          <motion.div variants={boxButtonsAnimation} initial="hidden" animate="visible">
+            {tracker.target_value > tracker.value && (
+              <motion.button variants={buttonAnimation} onClick={trackModeOpen}>
+                add
+              </motion.button>
+            )}
+            <motion.button variants={buttonAnimation} onClick={deleteClick}>
+              delete
+            </motion.button>
+            <motion.button variants={buttonAnimation} onClick={editClick}>
+              edit
+            </motion.button>
+          </motion.div>
           <div className={s.fields}>
             <span>Target Value: {tracker.target_value}</span>
             <span>Initial Value: {tracker.initial_value}</span>
