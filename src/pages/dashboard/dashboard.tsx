@@ -85,42 +85,42 @@ export function Dashboard() {
   );
 
   const createWidget = async (data: Tracker) => {
+    closeModal();
+
     try {
       if (!dashboardId) {
         return;
       }
 
       await createWidgetRequest(dashboardId, data);
-
-      closeModal();
     } catch (error) {
       toast.error(parseError(error));
     }
   };
 
   const updateWidget = async (data: Tracker) => {
+    closeModal();
+
     try {
       if (!dashboardId) {
         return;
       }
 
       await updateWidgetRequest(dashboardId, data);
-
-      closeModal();
     } catch (error) {
       toast.error(parseError(error));
     }
   };
 
   const deleteWidget = async () => {
+    closeModal();
+
     try {
       if (!dashboardId || !modal.tracker) {
         return;
       }
 
       await deleteWidgetRequest(dashboardId, modal.tracker.id);
-
-      closeModal();
     } catch (error) {
       toast.error(parseError(error));
     }
