@@ -14,7 +14,7 @@ type TrackerModalProps = {
   onClose: () => void;
   isOpen: boolean;
   isEdit?: boolean;
-  tracker: Tracker | null;
+  tracker?: Tracker;
 };
 
 const DEFAULT_TRACKER = {
@@ -57,7 +57,6 @@ export function TrackerModal({
 
   return (
     <Modal
-      className={s.box}
       onRequestClose={onClose}
       shouldCloseOnEsc
       shouldCloseOnOverlayClick

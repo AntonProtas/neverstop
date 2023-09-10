@@ -25,7 +25,10 @@ function App() {
         pauseOnHover
         theme="dark"
       />
-      <DndProvider backend={getIsMobile() ? TouchBackend : HTML5Backend}>
+      <DndProvider
+        backend={getIsMobile() ? TouchBackend : HTML5Backend}
+        options={{ delayTouchStart: getIsMobile() ? 400 : 0 }}
+      >
         <Router />
       </DndProvider>
     </AuthProvider>

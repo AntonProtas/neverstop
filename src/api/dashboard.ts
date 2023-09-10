@@ -1,4 +1,13 @@
-import { addDoc, collection, Timestamp, query, where, updateDoc, doc } from 'firebase/firestore';
+import {
+  addDoc,
+  collection,
+  Timestamp,
+  query,
+  where,
+  updateDoc,
+  doc,
+  getDocs,
+} from 'firebase/firestore';
 
 import db from './firesbase';
 
@@ -24,4 +33,8 @@ export async function updateOrderRequest(dashboardId: string, order: string[]) {
 
 export function getDashboardsQuery(userId: string) {
   return query(collection(db, 'dashboards'), where('user_id', '==', userId));
+}
+
+export async function getDashboardsCount(userId: string) {
+  return (await getDocs(getDashboardsQuery(userId))).size;
 }

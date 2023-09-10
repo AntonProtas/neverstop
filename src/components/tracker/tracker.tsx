@@ -2,11 +2,15 @@
 import cn from 'classnames';
 import { useRef } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
-//styles
-import s from './tracker.module.css';
+import { motion } from 'framer-motion';
+
+//components
+import { TrackForm, TrackFormValues } from 'components/track-form/track-form';
 //helpers
 import { getIsMobile } from 'helpers/common';
-import { DragItem, hoverDndElement } from './tracker.helpers';
+import { DragItem, boxButtonsAnimation, buttonAnimation, hoverDndElement } from './tracker.helpers';
+//styles
+import s from './tracker.module.css';
 
 export type Tracker = {
   id: string;
@@ -24,11 +28,25 @@ export type TrackerProps = {
   index: number;
   tracker: Tracker;
   onEdit: (tracker: Tracker) => void;
-  onDelete: (id: string) => void;
+  onDelete: (tracker: Tracker) => void;
   onMove: (dragIndex: number, hoverIndex: number) => void;
+  onTrackModeOpen: (tracker: Tracker) => void;
+  onTrackModeClose: () => void;
+  onTrackSubmit: (widgetId: string, value: number) => void;
+  isTrackMode?: boolean;
 };
 
-export function Tracker({ index, tracker, onEdit, onDelete, onMove }: TrackerProps) {
+export function Tracker({
+  index,
+  tracker,
+  onEdit,
+  onDelete,
+  onMove,
+  onTrackModeOpen,
+  onTrackModeClose,
+  onTrackSubmit,
+  isTrackMode = true,
+}: TrackerProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   const [{ handlerId }, drop] = useDrop<DragItem, void, { handlerId: string | symbol | null }>({
@@ -49,7 +67,12 @@ export function Tracker({ index, tracker, onEdit, onDelete, onMove }: TrackerPro
   drag(drop(ref));
 
   const editClick = () => onEdit(tracker);
-  const deleteClick = () => onDelete(tracker.id);
+  const deleteClick = () => onDelete(tracker);
+  const trackModeOpen = () => onTrackModeOpen(tracker);
+  const submitTracking = (data: TrackFormValues) => {
+    onTrackSubmit(tracker.id, tracker.value + data.value);
+    onTrackModeClose();
+  };
 
   return (
     <div
@@ -58,17 +81,32 @@ export function Tracker({ index, tracker, onEdit, onDelete, onMove }: TrackerPro
       style={{ opacity: isDragging ? (getIsMobile() ? 0.1 : 0) : 1 }}
       data-handler-id={handlerId}
     >
-      <div>
-        <button onClick={deleteClick}>delete</button>
-        <button onClick={editClick}>edit</button>
-      </div>
-      <div className={s.fields}>
-        <span>Target Value: {tracker.target_value}</span>
-        <span>Initial Value: {tracker.initial_value}</span>
-        <span>Current Value: {tracker.value}</span>
-        <span>Name: {tracker.name}</span>
-        <span>Unit: {tracker.unit}</span>
-      </div>
+      {isTrackMode ? (
+        <TrackForm onSubmit={submitTracking} tracker={tracker} onClose={onTrackModeClose} />
+      ) : (
+        <>
+          <motion.div variants={boxButtonsAnimation} initial="hidden" animate="visible">
+            {tracker.target_value > tracker.value && (
+              <motion.button variants={buttonAnimation} onClick={trackModeOpen}>
+                add
+              </motion.button>
+            )}
+            <motion.button variants={buttonAnimation} onClick={deleteClick}>
+              delete
+            </motion.button>
+            <motion.button variants={buttonAnimation} onClick={editClick}>
+              edit
+            </motion.button>
+          </motion.div>
+          <div className={s.fields}>
+            <span>Target Value: {tracker.target_value}</span>
+            <span>Initial Value: {tracker.initial_value}</span>
+            <span>Current Value: {tracker.value}</span>
+            <span>Name: {tracker.name}</span>
+            <span>Unit: {tracker.unit}</span>
+          </div>
+        </>
+      )}
     </div>
   );
 }
