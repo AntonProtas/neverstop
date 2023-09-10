@@ -168,7 +168,7 @@ export function Dashboard() {
                 layout
                 transition={{ duration: 0.3 }}
                 initial={{ x: -100, opacity: 0 }}
-                animate={{ x: 0, opacity: 1, transition: { duration: 0.5 } }}
+                animate={{ x: 0, opacity: 1, transition: { duration: 0.1 } }}
                 exit={{ x: 100, opacity: 0 }}
               >
                 <Tracker
