@@ -30,6 +30,7 @@ export type TrackerProps = {
   onEdit: (tracker: Tracker) => void;
   onDelete: (tracker: Tracker) => void;
   onMove: (dragIndex: number, hoverIndex: number) => void;
+  onView: (tracker: Tracker) => void;
   onTrackModeOpen: (tracker: Tracker) => void;
   onTrackModeClose: () => void;
   onTrackSubmit: (widgetId: string, value: number) => void;
@@ -42,6 +43,7 @@ export function Tracker({
   onEdit,
   onDelete,
   onMove,
+  onView,
   onTrackModeOpen,
   onTrackModeClose,
   onTrackSubmit,
@@ -69,6 +71,7 @@ export function Tracker({
   const editClick = () => onEdit(tracker);
   const deleteClick = () => onDelete(tracker);
   const trackModeOpen = () => onTrackModeOpen(tracker);
+  const viewClick = () => onView(tracker);
   const submitTracking = (data: TrackFormValues) => {
     onTrackSubmit(tracker.id, tracker.value + data.value);
     onTrackModeClose();
@@ -96,6 +99,9 @@ export function Tracker({
             </motion.button>
             <motion.button variants={buttonAnimation} onClick={editClick}>
               edit
+            </motion.button>
+            <motion.button variants={buttonAnimation} onClick={viewClick}>
+              full view
             </motion.button>
           </motion.div>
           <div className={s.fields}>

@@ -1,0 +1,15 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.label {
+  font-size: 12px;
+  margin-bottom: 4px;
+  font-weight: 400;
+}
+
+.value {
+  font-size: 18px;
+}
