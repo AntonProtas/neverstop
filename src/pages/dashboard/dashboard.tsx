@@ -2,7 +2,6 @@
 import { useMemo, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { motion, AnimatePresence } from 'framer-motion';
 //context
 import { UserAuth } from 'context/auth';
 //components
@@ -29,6 +28,7 @@ import { APPLICATION_URLS } from 'utils/constants';
 //styles
 import s from './dashboard.module.css';
 import { toHash } from 'helpers/data-transform';
+import { AnimatePresence, motion } from 'framer-motion';
 
 type ModalsType = 'view' | 'create' | 'edit' | 'add-progress' | 'delete' | null;
 

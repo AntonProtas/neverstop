@@ -1,9 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Homemade+Apple&family=Open+Sans:wght@500&display=swap');
+
 * {
   padding: 0;
   margin: 0;
   font-size: 18px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   list-style-type: none;
+  outline: none;
+
+  font-family: 'Homemade Apple', cursive;
+  font-family: 'Open Sans', sans-serif;
+
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px; /* 171.429% */
+  letter-spacing: 0.38px;
 }
 
 a {
@@ -11,14 +23,25 @@ a {
 }
 
 :root {
-  background: #332c39;
+  --primary-stroke: rgba(151, 0, 255, 0.29);
+  --primary: rgba(143, 0, 255, 1);
+
+  background: hsl(218 10% 15% / 1);
 }
 
 button {
-  padding: 8px 12px;
+  padding: 8px 24px;
   cursor: pointer;
+  color: #e1ecff;
+  background: #24272c;
+  border: none;
+
+  /* border-radius: 24px; */
+  /* border: 2px solid var(--primary-stroke, rgba(151, 0, 255, 0.29)); */
+  /* background: var(--primary, #8f00ff); */
+  /* box-shadow: 5px 5px 20px 0px #c9c9c9 inset, -8px -8px 20px 0px #e88cff; */
 }
 
 button:not(:last-of-type) {
-  margin-right: 6px;
+  margin-right: 16px;
 }
