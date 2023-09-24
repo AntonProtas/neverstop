@@ -26,20 +26,28 @@ a {
   --primary-stroke: rgba(151, 0, 255, 0.29);
   --primary: rgba(143, 0, 255, 1);
 
-  background: hsl(218 10% 15% / 1);
+  --background: hsl(218 10% 12% / 1);
+  --box-background: hsl(218 10% 20% / 1);
+  --button-background: #24272c;
+
+  --box-shadows: 1px 2px 2px 0px rgba(255, 255, 255, 0.25) inset,
+    36px 40px 56px 0px rgba(0, 0, 0, 0.19);
+  --button-shadows: 1px 2px 2px 0px rgba(255, 255, 255, 0.25) inset,
+    36px 40px 56px 0px rgba(0, 0, 0, 0.19);
+  --button-shadows-hover: 1.4px 2.4px 2.4px 0px rgba(255, 255, 255, 0.304) inset,
+    36px 40px 56px 0px rgba(0, 0, 0, 0.324);
+
+  --button-inner-shadows: 2px 2px 4px 0px rgba(0, 0, 0, 0.25) inset,
+    -2px -2px 4px 0px rgba(255, 255, 255, 0.25) inset;
+
+  background: var(--background);
 }
 
 button {
   padding: 8px 24px;
   cursor: pointer;
-  color: #e1ecff;
-  background: #24272c;
+  background: linear-gradient(320deg, #2f3339 14.78%, #15181c 95.73%);
   border: none;
-
-  /* border-radius: 24px; */
-  /* border: 2px solid var(--primary-stroke, rgba(151, 0, 255, 0.29)); */
-  /* background: var(--primary, #8f00ff); */
-  /* box-shadow: 5px 5px 20px 0px #c9c9c9 inset, -8px -8px 20px 0px #e88cff; */
 }
 
 button:not(:last-of-type) {

@@ -4,39 +4,26 @@
   flex-direction: column;
   cursor: pointer;
   position: relative;
-
+  background: var(--box-background);
   border-radius: 16px;
-  background: #24272c;
-  color: #e1ecff;
   padding: 16px 24px;
-  box-shadow: 1px 2px 2px 0px rgba(255, 255, 255, 0.25) inset,
-    36px 40px 56px 0px rgba(0, 0, 0, 0.19);
+  box-shadow: var(--box-shadows);
+  color: #e1ecff;
 }
 
-/* .box:hover {
-  box-shadow: 6px 6px 12px 0px rgba(0, 0, 0, 0.25), -6px -6px 12px 0px rgba(255, 255, 255, 0.25);
-} */
-
 .box button {
+  color: #e1ecff;
   border-radius: 12px;
-  background: #24272c;
-
-  box-shadow: 1.5px 1.5px 3.5px 0px rgba(0, 0, 0, 0.25),
-    -1.5px -1.5px 1.5px 0px rgba(255, 255, 255, 0.25);
-  color: #7f8493;
+  background: var(--button-background);
+  box-shadow: var(--button-shadows);
 }
 
 .box button:hover {
-  color: #e1ecff;
-  box-shadow: 3px 3px 6px 0px rgba(0, 0, 0, 0.25), -3px -3px 6px 0px rgba(255, 255, 255, 0.25);
-
-  /* color: var(--primary); */
+  box-shadow: var(--button-shadows-hover);
 }
 
 .box button:active {
-  color: #e1ecff;
-  box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.25) inset,
-    -2px -2px 4px 0px rgba(255, 255, 255, 0.25) inset;
+  box-shadow: var(--button-inner-shadows);
 }
 
 .isDragging {
