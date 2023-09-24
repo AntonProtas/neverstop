@@ -9,6 +9,7 @@ import { UserAuth } from 'context/auth';
 import { Tracker } from 'components/tracker/tracker';
 import { TrackerModal } from 'components/tracker-modal/tracker-modal';
 import { ConfirmModal } from 'components/confirm-modal/confirm-modal';
+import { TrackerViewModal } from 'components/tracker-view-modal/tracker-view-modal';
 //hooks
 import { useDashboard } from 'hooks/use-dashboard';
 import { useWidgets } from 'hooks/use-widgets';
@@ -29,7 +30,7 @@ import { APPLICATION_URLS } from 'utils/constants';
 import s from './dashboard.module.css';
 import { toHash } from 'helpers/data-transform';
 
-type ModalsType = 'create' | 'edit' | 'add-progress' | 'delete' | null;
+type ModalsType = 'view' | 'create' | 'edit' | 'add-progress' | 'delete' | null;
 
 type ModalState = {
   type: ModalsType;
@@ -181,13 +182,19 @@ export function Dashboard() {
                       tracker,
                     })
                   }
-                  onMove={moveTracker}
                   onTrackModeOpen={(tracker) =>
                     setModal({
                       type: 'add-progress',
                       tracker,
                     })
                   }
+                  onView={(tracker) =>
+                    setModal({
+                      type: 'view',
+                      tracker,
+                    })
+                  }
+                  onMove={moveTracker}
                   onTrackModeClose={closeModal}
                   onTrackSubmit={submitTrackerProgress}
                   isTrackMode={id === modal.tracker?.id && modal.type === 'add-progress'}
@@ -203,6 +210,13 @@ export function Dashboard() {
         onClose={closeModal}
         onSubmit={modal.type === 'edit' ? updateWidget : createWidget}
       />
+      {modal.tracker && (
+        <TrackerViewModal
+          isOpen={modal.type === 'view'}
+          tracker={modal.tracker}
+          onClose={closeModal}
+        />
+      )}
       <ConfirmModal
         text={`Do u really want to delete widget "${modal.tracker?.name}" ?`}
         isOpen={modal.type === 'delete'}
