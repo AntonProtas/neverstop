@@ -2,7 +2,6 @@
 import { useMemo, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { motion, AnimatePresence } from 'framer-motion';
 //context
 import { UserAuth } from 'context/auth';
 //components
@@ -29,6 +28,7 @@ import { APPLICATION_URLS } from 'utils/constants';
 //styles
 import s from './dashboard.module.css';
 import { toHash } from 'helpers/data-transform';
+import { AnimatePresence, motion } from 'framer-motion';
 
 type ModalsType = 'view' | 'create' | 'edit' | 'add-progress' | 'delete' | null;
 
@@ -152,12 +152,10 @@ export function Dashboard() {
 
   return (
     <>
-      <button className={s.logOut} onClick={onLogout}>
-        log out
-      </button>
-      <button className={s.logOut} onClick={() => setModal({ type: 'create' })}>
-        add tracker
-      </button>
+      <div className={s.controls}>
+        <button onClick={() => setModal({ type: 'create' })}>add tracker</button>
+        <button onClick={onLogout}>log out</button>
+      </div>
       {(isDashboardLoading || isWidgetsLoading) && <span>...loading</span>}
       <AnimatePresence initial={false}>
         <div className={s.box}>

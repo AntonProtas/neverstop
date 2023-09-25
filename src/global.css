@@ -1,9 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Homemade+Apple&family=Open+Sans:wght@500&display=swap');
+
 * {
   padding: 0;
   margin: 0;
-  font-size: 18px;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   list-style-type: none;
+  outline: none;
+
+  font-family: 'Homemade Apple', cursive;
+  font-family: 'Open Sans', sans-serif;
+
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px; /* 171.429% */
+  letter-spacing: 0.38px;
 }
 
 a {
@@ -11,14 +21,39 @@ a {
 }
 
 :root {
-  background: #332c39;
+  --primary-stroke: rgba(151, 0, 255, 0.29);
+  --primary: rgba(143, 0, 255, 1);
+
+  --background: hsl(218 10% 18% / 1);
+  --box-background: hsl(218 10% 20% / 1);
+  /* --button-background: hsl(218 10% 20% / 1); */
+
+  --button-background: #24272c;
+
+  --box-shadows: 1px 2px 2px 0px rgba(255, 255, 255, 0.25) inset,
+    16px 20px 32px 0px rgba(0, 0, 0, 0.19);
+  --button-shadows: 1px 2px 2px 0px rgba(255, 255, 255, 0.25) inset,
+    16px 20px 32px 0px rgba(0, 0, 0, 0.19);
+  --button-shadows-hover: 1.4px 2.4px 2.4px 0px rgba(255, 255, 255, 0.304) inset,
+    16px 20px 32px 0px rgba(0, 0, 0, 0.324);
+
+  --button-inner-shadows: 2px 2px 4px 0px rgba(0, 0, 0, 0.25) inset,
+    -2px -2px 4px 0px rgba(255, 255, 255, 0.25) inset;
+
+  --inner-shadows: 2px 2px 4px 0px rgba(0, 0, 0, 0.25) inset,
+    -2px -2px 4px 0px rgba(255, 255, 255, 0.25) inset;
+
+  --second-text: #7f8493;
+
+  background: var(--background);
 }
 
 button {
-  padding: 8px 12px;
+  padding: 8px 24px;
   cursor: pointer;
+  border: none;
 }
 
 button:not(:last-of-type) {
-  margin-right: 6px;
+  margin-right: 16px;
 }
