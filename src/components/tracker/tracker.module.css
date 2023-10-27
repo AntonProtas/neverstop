@@ -3,12 +3,18 @@
   display: flex;
   flex-direction: column;
   cursor: pointer;
-  position: relative;
   background: var(--box-background);
   border-radius: 16px;
   padding: 16px 24px 0;
   box-shadow: var(--box-shadows);
   color: #e1ecff;
+  position: relative;
+  transition: ease 0.2s;
+}
+
+.withControls {
+  transform: translateY(-48px);
+  transition: ease 0.3s;
 }
 
 .box button {
@@ -24,6 +30,13 @@
 
 .box button:active {
   box-shadow: var(--button-inner-shadows);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
 }
 
 .isDragging {
@@ -43,7 +56,6 @@
 .title {
   font-size: 18px;
   line-height: 24px;
-  margin-bottom: 32px;
 }
 
 .progress {
@@ -51,12 +63,18 @@
 }
 
 .controls {
+  position: absolute;
+  left: 0;
+  bottom: -56px;
   border-radius: 16px;
   display: flex;
-  background-color: var(--box-background);
+  background-color: var(--box-background-on-surface);
   box-shadow: var(--button-shadows);
   padding: 16px 12px;
-  margin: auto -24px 0;
+  max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 2;
 }
 
 .controls button {
@@ -66,9 +84,17 @@
   width: 100%;
 }
 
-.controls button svg {
+.controls button svg,
+.controls .dotsButton svg {
   height: 16px;
   width: 16px;
+}
+
+.box .dotsButton {
+  border-radius: 50%;
+  padding: 0;
+  height: 32px;
+  width: 32px;
 }
 
 @media (max-width: 580px) {
@@ -77,5 +103,15 @@
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr;
     gap: 12px;
+    bottom: -108px;
+  }
+
+  .withControls {
+    margin: 48px 0;
+  }
+
+  .box,
+  .withControls {
+    transition: none;
   }
 }

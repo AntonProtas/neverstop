@@ -16,6 +16,10 @@
   letter-spacing: 0.38px;
 }
 
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
 a {
   color: #609ea2;
 }
@@ -26,6 +30,8 @@ a {
 
   --background: hsl(218 10% 18% / 1);
   --box-background: hsl(218 10% 20% / 1);
+  --box-background-on-surface: hsl(218 10% 16% / 1);
+
   /* --button-background: hsl(218 10% 20% / 1); */
 
   --button-background: #24272c;

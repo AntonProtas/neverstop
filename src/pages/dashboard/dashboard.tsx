@@ -29,6 +29,7 @@ import { APPLICATION_URLS } from 'utils/constants';
 import s from './dashboard.module.css';
 import { toHash } from 'helpers/data-transform';
 import { AnimatePresence, motion } from 'framer-motion';
+import { getIsMobile } from 'helpers/common';
 
 type ModalsType = 'view' | 'create' | 'edit' | 'add-progress' | 'delete' | null;
 
@@ -52,6 +53,8 @@ export function Dashboard() {
   const [modal, setModal] = useState<ModalState>({
     type: null,
   });
+
+  const [trackerIdWithControls, setTrackerIdWithControls] = useState<string | null>(null);
 
   const hashIdToWidget = useMemo(() => {
     return toHash(widgets, 'id');
@@ -164,11 +167,13 @@ export function Dashboard() {
             .map((id, index) => (
               <motion.li
                 key={id}
-                layout
-                transition={{ duration: 0.3 }}
-                initial={{ x: -100, opacity: 0 }}
-                animate={{ x: 0, opacity: 1, transition: { duration: 0.1 } }}
-                exit={{ x: 100, opacity: 0 }}
+                layout={!getIsMobile()}
+                transition={!getIsMobile() ? { duration: 0.3 } : undefined}
+                initial={!getIsMobile() ? { x: -100, opacity: 0 } : undefined}
+                animate={
+                  !getIsMobile() ? { x: 0, opacity: 1, transition: { duration: 0.1 } } : undefined
+                }
+                exit={!getIsMobile() ? { x: 100, opacity: 0 } : undefined}
               >
                 <Tracker
                   index={index}
@@ -192,6 +197,9 @@ export function Dashboard() {
                       tracker,
                     })
                   }
+                  isOpenControls={trackerIdWithControls === id}
+                  onOpenControls={() => setTrackerIdWithControls(id)}
+                  onCloseControls={() => setTrackerIdWithControls(null)}
                   onMove={moveTracker}
                   onTrackModeClose={closeModal}
                   onTrackSubmit={submitTrackerProgress}
