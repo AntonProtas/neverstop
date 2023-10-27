@@ -1,5 +1,5 @@
 .box {
-  padding: 42px;
+  padding: 64px 42px 72px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(490px, 1fr));
   padding-bottom: 72px;
@@ -25,6 +25,6 @@
   .box {
     grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
     grid-template-rows: 1fr;
-    padding: 12px;
+    padding: 52px 18px 64px;
   }
 }

@@ -16,6 +16,10 @@
   letter-spacing: 0.38px;
 }
 
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
 a {
   color: #609ea2;
 }
