@@ -167,7 +167,7 @@ export function Dashboard() {
             .map((id, index) => (
               <motion.li
                 key={id}
-                layout
+                layout={!getIsMobile()}
                 transition={!getIsMobile() ? { duration: 0.3 } : undefined}
                 initial={!getIsMobile() ? { x: -100, opacity: 0 } : undefined}
                 animate={

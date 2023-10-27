@@ -9,7 +9,7 @@
   box-shadow: var(--box-shadows);
   color: #e1ecff;
   position: relative;
-  transition: ease-in-out 0.2s;
+  transition: ease 0.2s;
 }
 
 .withControls {
