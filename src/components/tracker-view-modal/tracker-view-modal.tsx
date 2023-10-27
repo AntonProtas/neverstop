@@ -1,7 +1,6 @@
 //components
 import type { Tracker } from 'components/tracker/tracker';
 import { Modal } from 'ui/modal/modal';
-import { motion } from 'framer-motion';
 //styles
 import s from './tracker-view-modal.module.css';
 
@@ -20,11 +19,7 @@ export function TrackerViewModal({ isOpen, onClose, tracker }: TrackerViewModalP
       shouldReturnFocusAfterClose
       isOpen={isOpen}
     >
-      <motion.div
-        transition={{ duration: 0.3 }}
-        initial={{ x: -100, opacity: 0 }}
-        animate={{ x: 0, opacity: 1, transition: { duration: 0.1 } }}
-      >
+      <div>
         <div className={s.field}>
           <span className={s.label}>name</span>
           <span className={s.value}>{tracker.name}</span>
@@ -64,7 +59,7 @@ export function TrackerViewModal({ isOpen, onClose, tracker }: TrackerViewModalP
           </div>
         )}
         <button onClick={onClose}>close</button>
-      </motion.div>
+      </div>
     </Modal>
   );
 }
