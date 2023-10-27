@@ -123,7 +123,7 @@ export function Tracker({
           {isOpenControls && (
             <motion.div
               className={s.controls}
-              variants={boxButtonsAnimation}
+              variants={setAnimation(boxButtonsAnimation)}
               initial="hidden"
               animate="visible"
             >
