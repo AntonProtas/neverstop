@@ -1,11 +1,29 @@
 .box {
   border-radius: 12px;
-  background-color: #6554af;
   display: flex;
   flex-direction: column;
-  height: 100%;
   cursor: pointer;
   position: relative;
+  background: var(--box-background);
+  border-radius: 16px;
+  padding: 16px 24px 0;
+  box-shadow: var(--box-shadows);
+  color: #e1ecff;
+}
+
+.box button {
+  color: #e1ecff;
+  border-radius: 12px;
+  background: var(--button-background);
+  box-shadow: var(--button-shadows);
+}
+
+.box button:hover {
+  box-shadow: var(--button-shadows-hover);
+}
+
+.box button:active {
+  box-shadow: var(--button-inner-shadows);
 }
 
 .isDragging {
@@ -13,11 +31,51 @@
 }
 
 .fields {
-  padding: 8px;
+  padding-top: 24px;
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
 
 .form {
   height: 100%;
+}
+
+.title {
+  font-size: 18px;
+  line-height: 24px;
+  margin-bottom: 32px;
+}
+
+.progress {
+  margin-bottom: 16px;
+}
+
+.controls {
+  border-radius: 16px;
+  display: flex;
+  background-color: var(--box-background);
+  box-shadow: var(--button-shadows);
+  padding: 16px 12px;
+  margin: auto -24px 0;
+}
+
+.controls button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.controls button svg {
+  height: 16px;
+  width: 16px;
+}
+
+@media (max-width: 580px) {
+  .controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 12px;
+  }
 }

@@ -1,15 +1,29 @@
 .box {
   padding: 42px;
   display: grid;
-  row-gap: 42px;
-  column-gap: 21px;
-  grid-auto-rows: 160px;
   grid-template-columns: repeat(auto-fill, minmax(490px, 1fr));
   padding-bottom: 72px;
+  gap: 32px;
+}
+
+.controls {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.controls button {
+  width: 100%;
 }
 
 @media (max-width: 580px) {
   .box {
     grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    grid-template-rows: 1fr;
+    padding: 12px;
   }
 }

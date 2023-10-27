@@ -3,7 +3,6 @@ import cn from 'classnames';
 import { useRef } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 import { motion } from 'framer-motion';
-
 //components
 import { TrackForm, TrackFormValues } from 'components/track-form/track-form';
 //helpers
@@ -11,6 +10,9 @@ import { getIsMobile } from 'helpers/common';
 import { DragItem, boxButtonsAnimation, buttonAnimation, hoverDndElement } from './tracker.helpers';
 //styles
 import s from './tracker.module.css';
+import { ProgressBar } from 'components/progress-bar/progress-bar';
+
+import { BsPlusCircleFill, BsFillPencilFill, BsFillTrashFill, BsFillEyeFill } from 'react-icons/bs';
 
 export type Tracker = {
   id: string;
@@ -88,29 +90,39 @@ export function Tracker({
         <TrackForm onSubmit={submitTracking} tracker={tracker} onClose={onTrackModeClose} />
       ) : (
         <>
-          <motion.div variants={boxButtonsAnimation} initial="hidden" animate="visible">
+          <span className={s.title}>{tracker.name}</span>
+          <ProgressBar
+            className={s.progress}
+            value={tracker.value}
+            start={tracker.initial_value}
+            end={tracker.target_value}
+            unit={tracker.unit}
+          />
+          <motion.div
+            className={s.controls}
+            variants={boxButtonsAnimation}
+            initial="hidden"
+            animate="visible"
+          >
             {tracker.target_value > tracker.value && (
               <motion.button variants={buttonAnimation} onClick={trackModeOpen}>
+                <BsPlusCircleFill color="#739993" />
                 add
               </motion.button>
             )}
-            <motion.button variants={buttonAnimation} onClick={deleteClick}>
-              delete
-            </motion.button>
             <motion.button variants={buttonAnimation} onClick={editClick}>
+              <BsFillPencilFill color="#E6B188" />
               edit
             </motion.button>
             <motion.button variants={buttonAnimation} onClick={viewClick}>
-              full view
+              <BsFillEyeFill color="#525475" />
+              view
+            </motion.button>
+            <motion.button variants={buttonAnimation} onClick={deleteClick}>
+              <BsFillTrashFill color="#D18080" />
+              delete
             </motion.button>
           </motion.div>
-          <div className={s.fields}>
-            <span>Target Value: {tracker.target_value}</span>
-            <span>Initial Value: {tracker.initial_value}</span>
-            <span>Current Value: {tracker.value}</span>
-            <span>Name: {tracker.name}</span>
-            <span>Unit: {tracker.unit}</span>
-          </div>
         </>
       )}
     </div>

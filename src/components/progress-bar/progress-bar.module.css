@@ -1,0 +1,41 @@
+.box {
+  display: flex;
+  flex-direction: column;
+}
+
+.progressBox {
+  background: var(--background);
+  box-shadow: var(--inner-shadows);
+  height: 32px;
+  position: relative;
+  border-radius: 12px;
+}
+
+.progress {
+  border-radius: 12px;
+  height: 32px;
+  position: absolute;
+  left: 0;
+  outline: 2px solid var(--primary-stroke, rgba(151, 0, 255, 0.29));
+  background: linear-gradient(180deg, #8f00ff 0%, rgba(143, 0, 255, 0.33) 100%);
+  box-shadow: 2px 2px 4px 0px #c9c9c9 inset, -2px -2px 4px 0px #e88cff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: hsla(0, 0%, 100%, 1);
+}
+
+.axisNumbers {
+  padding-top: 4px;
+  display: flex;
+  justify-content: space-between;
+  color: #7f8493;
+}
+
+.value {
+  position: absolute;
+  right: 0;
+  top: -28px;
+  text-align: right;
+}
