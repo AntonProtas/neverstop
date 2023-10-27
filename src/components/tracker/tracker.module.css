@@ -104,4 +104,9 @@
     grid-template-rows: 1fr;
     gap: 12px;
   }
+
+  .box,
+  .withControls {
+    transition: none;
+  }
 }
