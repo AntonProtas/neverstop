@@ -1,11 +1,15 @@
 .box {
+  display: flex;
+  align-items: center;
   box-sizing: border-box;
-  padding: 8px 24px;
+  gap: 8px;
+  padding: 8px 24px 8px 16px;
   cursor: pointer;
   border: none;
   border-radius: 12px;
   background: var(--button-background);
   box-shadow: var(--button-shadows);
+  color: var(--main-text);
 }
 
 .box:hover {
@@ -17,8 +21,8 @@
 }
 
 .box svg {
-  height: 16px;
-  width: 16px;
+  height: 20px;
+  width: 20px;
 }
 
 .iconBox {

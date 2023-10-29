@@ -2,29 +2,25 @@
   padding: 64px 42px 72px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(490px, 1fr));
-  padding-bottom: 72px;
+  padding-bottom: 192px;
   padding-top: 64px;
   gap: 32px;
 }
 
 .controls {
-  position: fixed;
-  right: 16px;
-  bottom: 16px;
-
   display: flex;
   flex-direction: column;
   gap: 4px;
-}
-
-.controls button {
-  width: 100%;
+  position: fixed;
+  right: 12px;
+  bottom: 12px;
+  z-index: 2;
 }
 
 @media (max-width: 580px) {
   .box {
     grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
     grid-template-rows: 1fr;
-    padding: 52px 18px 64px;
+    padding: 52px 18px 128px;
   }
 }

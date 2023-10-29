@@ -49,6 +49,9 @@
 }
 
 .controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   position: absolute;
   left: 0;
   bottom: -56px;
@@ -61,23 +64,11 @@
   width: 100%;
   box-sizing: border-box;
   z-index: 2;
+  gap: 16px;
 }
 
-.controls button {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+.button {
   width: 100%;
-}
-
-.controls button svg,
-.controls .dotsButton svg {
-  height: 16px;
-  width: 16px;
-}
-
-.dotsButton {
-  color: var(--main-text);
 }
 
 .addingFormBox {

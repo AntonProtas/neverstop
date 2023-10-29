@@ -9,6 +9,8 @@
   height: 32px;
   position: relative;
   border-radius: 12px;
+
+  /* background-color: red; */
 }
 
 .progress {
@@ -26,6 +28,12 @@
   color: hsla(0, 0%, 100%, 1);
 }
 
+.percentages {
+  position: absolute;
+  top: 3px;
+  z-index: 2;
+}
+
 .axisNumbers {
   padding-top: 4px;
   display: flex;
@@ -35,7 +43,6 @@
 
 .value {
   position: absolute;
-  right: 0;
   top: -28px;
   text-align: right;
 }

@@ -1,3 +1,9 @@
+.modal {
+  flex-direction: column;
+  position: relative;
+  padding: 56px 32px 24px;
+}
+
 .form {
   width: 100%;
   display: flex;
@@ -5,10 +11,12 @@
   gap: 12px;
 }
 
-.box .form button {
-  margin-right: 0;
+.closeButton {
+  position: absolute;
+  right: 12px;
+  top: 12px;
 }
 
-.error {
-  color: #c92c6d;
+.submit {
+  justify-content: center;
 }

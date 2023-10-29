@@ -144,23 +144,39 @@ export function Tracker({
           animate="visible"
         >
           {tracker.target_value > tracker.value && (
-            <motion.button variants={setAnimation(buttonAnimation)} onClick={trackModeOpen}>
-              <BsPlusCircleFill color="#739993" />
+            <Button
+              className={s.button}
+              variants={setAnimation(buttonAnimation)}
+              onClick={trackModeOpen}
+              icon={<BsPlusCircleFill color="#739993" />}
+            >
               add
-            </motion.button>
+            </Button>
           )}
-          <motion.button variants={setAnimation(buttonAnimation)} onClick={editClick}>
-            <BsFillPencilFill color="#E6B188" />
+          <Button
+            className={s.button}
+            variants={setAnimation(buttonAnimation)}
+            onClick={editClick}
+            icon={<BsFillPencilFill color="#E6B188" />}
+          >
             edit
-          </motion.button>
-          <motion.button variants={setAnimation(buttonAnimation)} onClick={viewClick}>
-            <BsFillEyeFill color="#525475" />
+          </Button>
+          <Button
+            className={s.button}
+            variants={setAnimation(buttonAnimation)}
+            onClick={viewClick}
+            icon={<BsFillEyeFill color="#525475" />}
+          >
             view
-          </motion.button>
-          <motion.button variants={setAnimation(buttonAnimation)} onClick={deleteClick}>
-            <BsFillTrashFill color="#D18080" />
+          </Button>
+          <Button
+            className={s.button}
+            variants={setAnimation(buttonAnimation)}
+            onClick={deleteClick}
+            icon={<BsFillTrashFill color="#D18080" />}
+          >
             delete
-          </motion.button>
+          </Button>
         </motion.div>
       )}
     </div>

@@ -51,3 +51,30 @@
   font-weight: 400;
   line-height: 1.6rem;
 }
+
+.container {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
+  color: var(--main-text);
+}
+
+.showWholeText {
+  white-space: normal;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+.webkitBox {
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  word-break: break-word;
+}
+
+.oneLine {
+  -webkit-line-clamp: 1;
+}
+
+.twoLine {
+  -webkit-line-clamp: 2;
+}

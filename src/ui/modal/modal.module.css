@@ -1,6 +1,6 @@
 .box {
   display: flex;
-  width: 100%;
+  width: auto;
   max-width: 420px;
   position: absolute;
   top: 50%;
@@ -9,6 +9,9 @@
   padding: 48px 24px;
   border-radius: 12px;
   background-color: var(--background);
+  max-height: 80%;
+  overflow-y: scroll;
+  min-width: 420px;
 }
 
 .isOpen {
@@ -28,4 +31,11 @@
   right: 0;
   top: 0;
   z-index: 4;
+}
+
+@media (max-width: 580px) {
+  .box {
+    max-height: 90%;
+    min-width: 90%;
+  }
 }
