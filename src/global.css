@@ -12,54 +12,35 @@
   font-size: 14px;
   font-style: normal;
   font-weight: 700;
-  line-height: 24px; /* 171.429% */
+  line-height: 24px;
   letter-spacing: 0.38px;
-}
-
-* {
   -webkit-tap-highlight-color: transparent;
 }
 
-a {
-  color: #609ea2;
-}
-
 :root {
-  --primary-stroke: rgba(151, 0, 255, 0.29);
-  --primary: rgba(143, 0, 255, 1);
-
-  --background: hsl(218 10% 18% / 1);
-  --box-background: hsl(218 10% 20% / 1);
-  --box-background-on-surface: hsl(218 10% 16% / 1);
-
-  /* --button-background: hsl(218 10% 20% / 1); */
-
-  --button-background: #24272c;
-
   --box-shadows: 1px 2px 2px 0px rgba(255, 255, 255, 0.25) inset,
     16px 20px 32px 0px rgba(0, 0, 0, 0.19);
   --button-shadows: 1px 2px 2px 0px rgba(255, 255, 255, 0.25) inset,
     16px 20px 32px 0px rgba(0, 0, 0, 0.19);
   --button-shadows-hover: 1.4px 2.4px 2.4px 0px rgba(255, 255, 255, 0.304) inset,
     16px 20px 32px 0px rgba(0, 0, 0, 0.324);
-
   --button-inner-shadows: 2px 2px 4px 0px rgba(0, 0, 0, 0.25) inset,
     -2px -2px 4px 0px rgba(255, 255, 255, 0.25) inset;
-
+  --light-inner-shadows: 0.5px 0.5px 1px 0px rgba(0, 0, 0, 0.25) inset,
+    -0.5px -0.5px 1px 0px rgba(255, 255, 255, 0.25) inset;
   --inner-shadows: 2px 2px 4px 0px rgba(0, 0, 0, 0.25) inset,
     -2px -2px 4px 0px rgba(255, 255, 255, 0.25) inset;
 
+  --background: hsl(218 10% 18% / 1);
+  --box-background: hsl(218 10% 20% / 1);
+  --box-background-on-surface: hsl(218 10% 16% / 1);
+  --button-background: #24272c;
+  --primary-stroke: rgba(151, 0, 255, 0.29);
+  --primary: rgba(143, 0, 255, 1);
   --second-text: #7f8493;
+  --label: hsl(218, 92%, 86% / 1);
+  --main-text: hsl(218, 100%, 94%);
+  --error: #c92c6d;
 
   background: var(--background);
-}
-
-button {
-  padding: 8px 24px;
-  cursor: pointer;
-  border: none;
-}
-
-button:not(:last-of-type) {
-  margin-right: 16px;
 }

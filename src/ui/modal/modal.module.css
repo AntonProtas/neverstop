@@ -6,9 +6,9 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #6554af;
   padding: 48px 24px;
   border-radius: 12px;
+  background-color: var(--background);
 }
 
 .isOpen {

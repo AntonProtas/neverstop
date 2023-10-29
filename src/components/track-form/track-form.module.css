@@ -1,19 +1,34 @@
 .box {
   height: 100%;
-  background-color: #9575de;
   border-radius: 12px;
   display: flex;
-  position: relative;
+  align-items: center;
 }
 
 .form {
-  height: 100%;
+  display: flex;
   width: 100%;
-  align-self: center;
 }
 
-.close {
+.inputBox {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  margin-right: 8px;
+  position: relative;
+}
+
+.close svg {
+  height: 16px;
+  width: 16px;
+}
+
+.box .close {
   position: absolute;
-  top: 12px;
-  right: 12px;
+  top: 0;
+  right: 0;
+  border-radius: 50%;
+  padding: 0;
+  height: 32px;
+  width: 32px;
 }

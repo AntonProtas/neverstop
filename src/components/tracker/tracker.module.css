@@ -10,26 +10,12 @@
   color: #e1ecff;
   position: relative;
   transition: ease 0.2s;
+  height: 156px;
 }
 
 .withControls {
   transform: translateY(-48px);
   transition: ease 0.3s;
-}
-
-.box button {
-  color: #e1ecff;
-  border-radius: 12px;
-  background: var(--button-background);
-  box-shadow: var(--button-shadows);
-}
-
-.box button:hover {
-  box-shadow: var(--button-shadows-hover);
-}
-
-.box button:active {
-  box-shadow: var(--button-inner-shadows);
 }
 
 .header {
@@ -90,11 +76,13 @@
   width: 16px;
 }
 
-.box .dotsButton {
-  border-radius: 50%;
-  padding: 0;
-  height: 32px;
-  width: 32px;
+.dotsButton {
+  color: var(--main-text);
+}
+
+.addingFormBox {
+  box-sizing: border-box;
+  height: 100%;
 }
 
 @media (max-width: 580px) {

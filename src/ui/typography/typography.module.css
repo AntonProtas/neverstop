@@ -1,0 +1,53 @@
+.h1 {
+  font-size: 2.4rem;
+  font-weight: 700;
+  line-height: 3.2rem;
+}
+
+.h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 2.4rem;
+}
+
+.h3 {
+  font-size: 1.8rem;
+  font-weight: 500;
+  line-height: 2.4rem;
+}
+
+.p1 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 2.2rem;
+}
+
+.p2 {
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 2.2rem;
+}
+
+.p3 {
+  font-size: 1.4rem;
+  font-weight: 500;
+  line-height: 2rem;
+}
+
+.p4 {
+  font-size: 1.4rem;
+  font-weight: 400;
+  line-height: 2rem;
+}
+
+.p5 {
+  font-size: 1.4rem;
+  font-weight: 500;
+  line-height: 2rem;
+}
+
+.p6 {
+  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: 1.6rem;
+}

@@ -20,7 +20,13 @@ import {
   BsThreeDots,
   BsXLg,
 } from 'react-icons/bs';
-import { boxButtonsAnimation, buttonAnimation, setAnimation } from 'helpers/animation';
+import {
+  boxButtonsAnimation,
+  buttonAnimation,
+  formAnimation,
+  setAnimation,
+} from 'helpers/animation';
+import { Button } from 'ui/button/button';
 
 export type Tracker = {
   id: string;
@@ -101,17 +107,25 @@ export function Tracker({
       data-handler-id={handlerId}
     >
       {isTrackMode ? (
-        <TrackForm onSubmit={submitTracking} tracker={tracker} onClose={onTrackModeClose} />
+        <motion.div
+          style={{
+            height: '100%',
+          }}
+          variants={setAnimation(formAnimation)}
+          initial="hidden"
+          animate="visible"
+        >
+          <TrackForm onSubmit={submitTracking} tracker={tracker} onClose={onTrackModeClose} />
+        </motion.div>
       ) : (
         <>
           <div className={s.header}>
             <span className={s.title}>{tracker.name}</span>
-            <button
+            <Button
               className={s.dotsButton}
+              icon={isOpenControls ? <BsXLg /> : <BsThreeDots />}
               onClick={isOpenControls ? onCloseControls : onOpenControls}
-            >
-              {isOpenControls ? <BsXLg /> : <BsThreeDots />}
-            </button>
+            />
           </div>
           <ProgressBar
             className={s.progress}
@@ -120,34 +134,34 @@ export function Tracker({
             end={tracker.target_value}
             unit={tracker.unit}
           />
-          {isOpenControls && (
-            <motion.div
-              className={s.controls}
-              variants={setAnimation(boxButtonsAnimation)}
-              initial="hidden"
-              animate="visible"
-            >
-              {tracker.target_value > tracker.value && (
-                <motion.button variants={setAnimation(buttonAnimation)} onClick={trackModeOpen}>
-                  <BsPlusCircleFill color="#739993" />
-                  add
-                </motion.button>
-              )}
-              <motion.button variants={setAnimation(buttonAnimation)} onClick={editClick}>
-                <BsFillPencilFill color="#E6B188" />
-                edit
-              </motion.button>
-              <motion.button variants={setAnimation(buttonAnimation)} onClick={viewClick}>
-                <BsFillEyeFill color="#525475" />
-                view
-              </motion.button>
-              <motion.button variants={setAnimation(buttonAnimation)} onClick={deleteClick}>
-                <BsFillTrashFill color="#D18080" />
-                delete
-              </motion.button>
-            </motion.div>
-          )}
         </>
+      )}
+      {isOpenControls && (
+        <motion.div
+          className={s.controls}
+          variants={setAnimation(boxButtonsAnimation)}
+          initial="hidden"
+          animate="visible"
+        >
+          {tracker.target_value > tracker.value && (
+            <motion.button variants={setAnimation(buttonAnimation)} onClick={trackModeOpen}>
+              <BsPlusCircleFill color="#739993" />
+              add
+            </motion.button>
+          )}
+          <motion.button variants={setAnimation(buttonAnimation)} onClick={editClick}>
+            <BsFillPencilFill color="#E6B188" />
+            edit
+          </motion.button>
+          <motion.button variants={setAnimation(buttonAnimation)} onClick={viewClick}>
+            <BsFillEyeFill color="#525475" />
+            view
+          </motion.button>
+          <motion.button variants={setAnimation(buttonAnimation)} onClick={deleteClick}>
+            <BsFillTrashFill color="#D18080" />
+            delete
+          </motion.button>
+        </motion.div>
       )}
     </div>
   );

@@ -1,0 +1,30 @@
+.box {
+  box-sizing: border-box;
+  padding: 8px 24px;
+  cursor: pointer;
+  border: none;
+  border-radius: 12px;
+  background: var(--button-background);
+  box-shadow: var(--button-shadows);
+}
+
+.box:hover {
+  box-shadow: var(--button-shadows-hover);
+}
+
+.box:active {
+  box-shadow: var(--button-inner-shadows);
+}
+
+.box svg {
+  height: 16px;
+  width: 16px;
+}
+
+.iconBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border-radius: 50%;
+}
