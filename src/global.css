@@ -95,7 +95,6 @@ li {
 
 a {
   color: var(--color-on-surface-1);
-  text-decoration: none;
 }
 
 input[type='number']::-webkit-inner-spin-button,
