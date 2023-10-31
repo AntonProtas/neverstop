@@ -1,8 +1,8 @@
 //libs
 import { useNavigate, Link } from 'react-router-dom';
-import GoogleButton from 'react-google-button';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
+import { BsGoogle } from 'react-icons/bs';
 //api
 import { signInRequest, signInWithGoogleRequest } from 'api/user';
 //helpers
@@ -11,6 +11,9 @@ import { parseError } from 'helpers/data-transform';
 import { APPLICATION_URLS } from 'utils/constants';
 //styles
 import s from './sign-in.module.css';
+import { Input } from 'ui/input/input';
+import { getFormError } from 'helpers/forms';
+import { Button } from 'ui/button/button';
 
 type SignUpFormValues = {
   email: string;
@@ -40,16 +43,30 @@ export function SignIn() {
   return (
     <div className={s.box}>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <input type="email" placeholder="email" {...register('email', { required: true })} />
-        {errors.email && <span className={s.error}>This field is required</span>}
-        <input
-          type="password"
+        <Input
+          label="Email"
+          type="email"
+          placeholder="Email"
+          {...register('email', { required: true })}
+          error={getFormError('email', errors.email?.type)}
+        />
+        <Input
+          label="Password"
+          type="Password"
           placeholder="password"
           {...register('password', { required: true })}
+          error={getFormError('password', errors.password?.type)}
         />
-        {errors.password && <span className={s.error}>This field is required</span>}
-        <button type="submit">Login</button>
-        <GoogleButton onClick={signInWithGoogleRequest} label="Sign in with Google" />
+        <Button type="submit">Login</Button>
+        <Button
+          onClick={(e) => {
+            e.preventDefault();
+            signInWithGoogleRequest();
+          }}
+          icon={<BsGoogle />}
+        >
+          Sign in with Google
+        </Button>
         <Link to={APPLICATION_URLS.signUp}>create account</Link>
       </form>
     </div>

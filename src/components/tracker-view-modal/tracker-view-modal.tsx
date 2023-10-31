@@ -1,6 +1,8 @@
 //components
 import type { Tracker } from 'components/tracker/tracker';
 import { Modal } from 'ui/modal/modal';
+import { Button } from 'ui/button/button';
+import { BsXLg } from 'react-icons/bs';
 //styles
 import s from './tracker-view-modal.module.css';
 
@@ -58,7 +60,7 @@ export function TrackerViewModal({ isOpen, onClose, tracker }: TrackerViewModalP
             <span className={s.value}>{tracker.not_finish_notes}</span>
           </div>
         )}
-        <button onClick={onClose}>close</button>
+        <Button className={s.closeButton} onClick={onClose} icon={<BsXLg />} />
       </div>
     </Modal>
   );

@@ -4,10 +4,14 @@ import { useForm } from 'react-hook-form';
 //components
 import type { Tracker } from 'components/tracker/tracker';
 import { Modal } from 'ui/modal/modal';
+import { BsXLg } from 'react-icons/bs';
 //helpers
 import { getFormError } from 'helpers/forms';
 //styles
 import s from './tracker-modal.module.css';
+import { Input } from 'ui/input/input';
+import { Textarea } from 'ui/textarea/textarea';
+import { Button } from 'ui/button/button';
 
 type TrackerModalProps = {
   onSubmit: (tracker: Tracker) => void;
@@ -18,14 +22,14 @@ type TrackerModalProps = {
 };
 
 const DEFAULT_TRACKER = {
-  name: 'test name',
-  value: 30,
-  initial_value: 25,
-  target_value: 100,
-  unit: 'days',
-  finish_notes: 'finish notes test',
-  not_finish_notes: 'not finish notes test',
-  reward: 'test reward',
+  name: '',
+  value: 0,
+  initial_value: 0,
+  target_value: 10,
+  unit: '',
+  finish_notes: '',
+  not_finish_notes: '',
+  reward: '',
 };
 
 export function TrackerModal({
@@ -43,13 +47,12 @@ export function TrackerModal({
     formState: { errors },
   } = useForm<Tracker>({
     mode: 'onBlur',
-    defaultValues: { ...(tracker ? tracker : DEFAULT_TRACKER) },
   });
 
+  console.log('tracker', tracker);
+
   useEffect(() => {
-    if (tracker) {
-      reset({ ...tracker });
-    }
+    reset(tracker ? { ...tracker } : DEFAULT_TRACKER);
   }, [tracker, reset]);
 
   const targetValue = watch('target_value');
@@ -57,6 +60,7 @@ export function TrackerModal({
 
   return (
     <Modal
+      className={s.modal}
       onRequestClose={onClose}
       shouldCloseOnEsc
       shouldCloseOnOverlayClick
@@ -64,71 +68,77 @@ export function TrackerModal({
       isOpen={isOpen}
     >
       <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
-        <input placeholder="Name" {...register('name', { required: true })} />
-        {errors.name && <span className={s.error}>This field is required</span>}
-        <input
+        <Button className={s.closeButton} onClick={onClose} icon={<BsXLg />} />
+        <Input
+          label="Name*"
+          placeholder="Name"
+          {...register('name', { required: true })}
+          error={getFormError('name', errors.name?.type)}
+        />
+        <Input
           type="number"
-          placeholder="Target value"
+          label="Goal*"
+          placeholder="Goal"
           {...register('target_value', {
             valueAsNumber: true,
             required: true,
             min: 1,
           })}
+          error={getFormError('goal', errors.target_value?.type)}
         />
-        {errors.target_value && (
-          <span className={s.error}>{getFormError('target value', errors.target_value.type)}</span>
-        )}
-        <input
+        <Input
           type="number"
-          placeholder="Initial value"
+          label="Start point*"
+          placeholder="Start point"
           {...register('initial_value', {
             valueAsNumber: true,
             required: true,
             max: targetValue,
             min: 0,
           })}
+          error={getFormError('start point', errors.initial_value?.type)}
         />
-        {errors.initial_value && (
-          <span className={s.error}>
-            {getFormError('initial value', errors.initial_value.type)}
-          </span>
-        )}
-        <input
+        <Input
           type="number"
-          placeholder="Current value"
+          label="Current progress*"
+          placeholder="Current progress"
           {...register('value', {
             valueAsNumber: true,
             required: true,
             max: targetValue,
             min: initialValue || 0,
           })}
+          error={getFormError('current progress', errors.value?.type)}
         />
-        {errors.value && (
-          <span className={s.error}>{getFormError('current value', errors.value.type)}</span>
-        )}
-        <input placeholder="Reward" {...register('reward', { maxLength: 125 })} />
-        <textarea
+        <Input
+          label="Reward"
+          placeholder="Reward"
+          {...register('reward', { maxLength: 125 })}
+          error={getFormError('reward', errors.reward?.type)}
+        />
+        <Textarea
+          label="What positive outcomes will there be if you do it?"
           placeholder="Finish notes"
           {...register('finish_notes', {
             maxLength: 125,
           })}
         />
-        <textarea
+        <Textarea
+          label="What negative consequences will there be if you don&#39;t do it?"
           placeholder="Not finish notes"
           {...register('not_finish_notes', {
             maxLength: 125,
           })}
         />
-        <input placeholder="Unit" {...register('unit', { required: true, maxLength: 125 })} />
-        {errors.unit && (
-          <span className={s.error}>
-            <span className={s.error}>{getFormError('unit', errors.unit.type)}</span>
-          </span>
-        )}
-        <button type="button" onClick={onClose}>
-          close
-        </button>
-        <button type="submit">{isEdit ? 'edit' : 'create'}</button>
+        <Input
+          label="Unit of measurement*"
+          placeholder="Unit of measurement"
+          {...register('unit', { required: true, maxLength: 125 })}
+          error={getFormError('unit of measurement', errors.unit?.type)}
+        />
+        <Button className={s.submit} type="submit">
+          {isEdit ? 'edit' : 'create'}
+        </Button>
       </form>
     </Modal>
   );

@@ -30,6 +30,8 @@ import s from './dashboard.module.css';
 import { toHash } from 'helpers/data-transform';
 import { AnimatePresence, motion } from 'framer-motion';
 import { getIsMobile } from 'helpers/common';
+import { Button } from 'ui/button/button';
+import { BsPlusCircleFill } from 'react-icons/bs';
 
 type ModalsType = 'view' | 'create' | 'edit' | 'add-progress' | 'delete' | null;
 
@@ -156,8 +158,16 @@ export function Dashboard() {
   return (
     <>
       <div className={s.controls}>
-        <button onClick={() => setModal({ type: 'create' })}>add tracker</button>
-        <button onClick={onLogout}>log out</button>
+        <Button
+          textSize="p1"
+          onClick={() => setModal({ type: 'create' })}
+          icon={<BsPlusCircleFill color="#739993" />}
+        >
+          add tracker
+        </Button>
+        <Button textSize="p1" onClick={onLogout}>
+          log out
+        </Button>
       </div>
       {(isDashboardLoading || isWidgetsLoading) && <span>...loading</span>}
       <AnimatePresence initial={false}>

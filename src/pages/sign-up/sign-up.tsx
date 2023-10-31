@@ -1,6 +1,5 @@
 //libs
 import { useNavigate, Link } from 'react-router-dom';
-import GoogleButton from 'react-google-button';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 //api
@@ -11,6 +10,10 @@ import { parseError } from 'helpers/data-transform';
 import { APPLICATION_URLS } from 'utils/constants';
 //styles
 import s from './sign-up.module.css';
+import { Input } from 'ui/input/input';
+import { getFormError } from 'helpers/forms';
+import { Button } from 'ui/button/button';
+import { BsGoogle } from 'react-icons/bs';
 
 type SignUpFormValues = {
   email: string;
@@ -40,16 +43,30 @@ export function SignUp() {
   return (
     <div className={s.box}>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <input type="email" placeholder="email" {...register('email', { required: true })} />
-        {errors.email && <span className={s.error}>This field is required</span>}
-        <input
-          type="password"
+        <Input
+          label="Email"
+          type="email"
+          placeholder="Email"
+          {...register('email', { required: true })}
+          error={getFormError('email', errors.email?.type)}
+        />
+        <Input
+          label="Password"
+          type="Password"
           placeholder="password"
           {...register('password', { required: true })}
+          error={getFormError('password', errors.password?.type)}
         />
-        {errors.password && <span className={s.error}>This field is required</span>}
-        <button type="submit">Register</button>
-        <GoogleButton onClick={signInWithGoogleRequest} label="Sign up with Google" />
+        <Button type="submit">Create account</Button>
+        <Button
+          onClick={(e) => {
+            e.preventDefault();
+            signInWithGoogleRequest();
+          }}
+          icon={<BsGoogle />}
+        >
+          Sign up with Google
+        </Button>
         <Link to={APPLICATION_URLS.signIn}>already has account</Link>
       </form>
     </div>

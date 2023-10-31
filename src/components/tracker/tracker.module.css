@@ -10,26 +10,12 @@
   color: #e1ecff;
   position: relative;
   transition: ease 0.2s;
+  height: 156px;
 }
 
 .withControls {
   transform: translateY(-48px);
   transition: ease 0.3s;
-}
-
-.box button {
-  color: #e1ecff;
-  border-radius: 12px;
-  background: var(--button-background);
-  box-shadow: var(--button-shadows);
-}
-
-.box button:hover {
-  box-shadow: var(--button-shadows-hover);
-}
-
-.box button:active {
-  box-shadow: var(--button-inner-shadows);
 }
 
 .header {
@@ -63,6 +49,9 @@
 }
 
 .controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   position: absolute;
   left: 0;
   bottom: -56px;
@@ -75,26 +64,16 @@
   width: 100%;
   box-sizing: border-box;
   z-index: 2;
+  gap: 16px;
 }
 
-.controls button {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+.button {
   width: 100%;
 }
 
-.controls button svg,
-.controls .dotsButton svg {
-  height: 16px;
-  width: 16px;
-}
-
-.box .dotsButton {
-  border-radius: 50%;
-  padding: 0;
-  height: 32px;
-  width: 32px;
+.addingFormBox {
+  box-sizing: border-box;
+  height: 100%;
 }
 
 @media (max-width: 580px) {

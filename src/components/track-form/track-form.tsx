@@ -5,6 +5,9 @@ import type { Tracker } from 'components/tracker/tracker';
 //styles
 import s from './track-form.module.css';
 import { getFormError } from 'helpers/forms';
+import { BsXLg } from 'react-icons/bs';
+import { Input } from 'ui/input/input';
+import { Button } from 'ui/button/button';
 
 type TrackFormProps = {
   tracker: Tracker;
@@ -28,7 +31,8 @@ export function TrackForm({ tracker, onClose, onSubmit }: TrackFormProps) {
   return (
     <div className={s.box}>
       <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
-        <input
+        <Input
+          label="Number count to add"
           type="number"
           placeholder={`add ${tracker.unit}`}
           {...register('value', {
@@ -37,15 +41,13 @@ export function TrackForm({ tracker, onClose, onSubmit }: TrackFormProps) {
             max: tracker.target_value - tracker.value,
             min: 1,
           })}
+          error={getFormError('current value', errors.value?.type)}
         />
-        {errors.value && (
-          <span className={s.error}>{getFormError('current value', errors.value.type)}</span>
-        )}
-        <button type="submit">add up</button>
+        <Button className={s.addButton} type="submit">
+          add up
+        </Button>
       </form>
-      <button className={s.close} onClick={onClose}>
-        close
-      </button>
+      <Button className={s.closeButton} onClick={onClose} icon={<BsXLg />} />
     </div>
   );
 }

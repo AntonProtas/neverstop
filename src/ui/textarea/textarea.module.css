@@ -1,0 +1,40 @@
+.box {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+  padding-bottom: 24px;
+}
+
+.label {
+  margin-bottom: 8px;
+  color: var(--second-text);
+}
+
+.input {
+  color: var(--main-text);
+  border: none;
+  box-sizing: border-box;
+  padding: 8px 16px;
+  border-radius: 12px;
+  outline: none;
+  background-color: var(--background);
+  box-shadow: var(--light-inner-shadows);
+  resize: none;
+}
+
+.input[type='number']::-webkit-inner-spin-button {
+  opacity: 0;
+}
+
+.input:active,
+.input:focus {
+  outline: none;
+  box-shadow: var(--inner-shadows);
+}
+
+.error {
+  position: absolute;
+  bottom: 0;
+  color: var(--error);
+}
