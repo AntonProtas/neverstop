@@ -17,29 +17,38 @@ export function ProgressBar({ value, className, start, end, unit }: ProgressBarP
   return (
     <div className={cn(s.box, className)}>
       <div className={s.progressBox}>
-        <span
-          style={{
-            left: percentages >= 90 ? `50%` : `${percentages + 2}%`,
-          }}
-          className={s.percentages}
-        >
-          {percentages}%
-        </span>
-        <span
-          className={s.value}
-          style={{
-            left: percentages >= 90 ? `50%` : `${percentages + 2}%`,
-          }}
-        >
-          {value}
-          {unit && <span> {unit}</span>}
-        </span>
-        <div
-          style={{
-            width: `${percentages}%`,
-          }}
-          className={s.progress}
-        ></div>
+        {percentages !== 0 && (
+          <>
+            <span
+              style={{
+                left: `calc(${percentages}% - 24px)`,
+                transform: 'translate(-50%, 0)',
+              }}
+              className={s.percentages}
+            >
+              {percentages}%
+            </span>
+            <div
+              className={s.value}
+              style={{
+                left:
+                  percentages <= 10
+                    ? `calc(${percentages}% + 48px)`
+                    : `calc(${percentages}% - 48px)`,
+                transform: 'translate(-50%, 0)',
+              }}
+            >
+              {value}
+              {unit && <span> {unit}</span>}
+            </div>
+            <div
+              style={{
+                width: `${percentages}%`,
+              }}
+              className={s.progress}
+            ></div>
+          </>
+        )}
       </div>
       <div className={s.axisNumbers}>
         {start !== undefined && (

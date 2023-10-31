@@ -22,14 +22,14 @@ type TrackerModalProps = {
 };
 
 const DEFAULT_TRACKER = {
-  name: 'test name',
-  value: 30,
-  initial_value: 25,
-  target_value: 100,
-  unit: 'days',
-  finish_notes: 'finish notes test',
-  not_finish_notes: 'not finish notes test',
-  reward: 'test reward',
+  name: '',
+  value: 0,
+  initial_value: 0,
+  target_value: 10,
+  unit: '',
+  finish_notes: '',
+  not_finish_notes: '',
+  reward: '',
 };
 
 export function TrackerModal({
@@ -47,13 +47,12 @@ export function TrackerModal({
     formState: { errors },
   } = useForm<Tracker>({
     mode: 'onBlur',
-    defaultValues: { ...(tracker ? tracker : DEFAULT_TRACKER) },
   });
 
+  console.log('tracker', tracker);
+
   useEffect(() => {
-    if (tracker) {
-      reset({ ...tracker });
-    }
+    reset(tracker ? { ...tracker } : DEFAULT_TRACKER);
   }, [tracker, reset]);
 
   const targetValue = watch('target_value');
@@ -115,7 +114,7 @@ export function TrackerModal({
           label="Reward"
           placeholder="Reward"
           {...register('reward', { maxLength: 125 })}
-          error={getFormError('reward', errors.value?.type)}
+          error={getFormError('reward', errors.reward?.type)}
         />
         <Textarea
           label="What positive outcomes will there be if you do it?"
