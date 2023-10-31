@@ -30,7 +30,7 @@
     inset 0 -40px 40px -20px rgba(255, 255, 255, 0.5);
   background: linear-gradient(var(--primary) 120px, transparent 0) no-repeat;
   background-position: 0px 120px;
-  animation: fillLq 4s linear infinite alternate;
+  animation: fillLq 1s linear infinite alternate;
 }
 .loader:before {
   position: absolute;
