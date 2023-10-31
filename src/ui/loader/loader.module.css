@@ -1,0 +1,56 @@
+.overlay {
+  position: fixed;
+  z-index: 3;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.9);
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  height: fit-content;
+}
+
+.loader {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  box-shadow: inset 0 0 20px -5px rgba(255, 255, 255, 0.5),
+    inset 0 -40px 40px -20px rgba(255, 255, 255, 0.5);
+  background: linear-gradient(var(--primary) 120px, transparent 0) no-repeat;
+  background-position: 0px 120px;
+  animation: fillLq 4s linear infinite alternate;
+}
+.loader:before {
+  position: absolute;
+  content: '';
+  width: 40%;
+  height: 25%;
+  top: 20px;
+  left: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  transform: rotate(-45deg);
+}
+
+@keyframes fillLq {
+  0%,
+  10% {
+    background-position: 0 120px;
+  }
+  90%,
+  100% {
+    background-position: 0 0;
+  }
+}
