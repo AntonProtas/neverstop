@@ -32,6 +32,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { getIsMobile } from 'helpers/common';
 import { Button } from 'ui/button/button';
 import { BsPlusCircleFill } from 'react-icons/bs';
+import { Loader } from 'ui/loader/loader';
 
 type ModalsType = 'view' | 'create' | 'edit' | 'add-progress' | 'delete' | null;
 
@@ -169,7 +170,7 @@ export function Dashboard() {
           log out
         </Button>
       </div>
-      {(isDashboardLoading || isWidgetsLoading) && <span>...loading</span>}
+      {(isDashboardLoading || isWidgetsLoading) && <Loader />}
       <AnimatePresence initial={false}>
         <div className={s.box}>
           {(order || [])
