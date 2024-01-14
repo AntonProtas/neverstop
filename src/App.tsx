@@ -9,7 +9,6 @@ import { Router } from 'components/router/router';
 import { getIsMobile } from 'helpers/common';
 
 import 'react-toastify/dist/ReactToastify.css';
-import 'react-tooltip/dist/react-tooltip.css';
 
 function App() {
   return (
