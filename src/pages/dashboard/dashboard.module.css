@@ -1,9 +1,11 @@
 .box {
-  padding: 64px 42px 72px;
+  padding: 48px 48px 72px;
+}
+
+.trackers {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(490px, 1fr));
-  padding-bottom: 192px;
-  padding-top: 64px;
+  grid-template-columns: repeat(auto-fill, minmax(324px, 1fr));
+  width: 100%;
   gap: 32px;
 }
 
@@ -14,13 +16,15 @@
   position: fixed;
   right: 12px;
   bottom: 12px;
-  z-index: 3;
+  z-index: 2;
 }
 
 @media (max-width: 580px) {
   .box {
-    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    padding: 64px 24px 128px;
+  }
+
+  .trackers {
     grid-template-rows: 1fr;
-    padding: 52px 18px 128px;
   }
 }

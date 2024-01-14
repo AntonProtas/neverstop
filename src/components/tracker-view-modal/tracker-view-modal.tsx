@@ -1,9 +1,9 @@
-//components
-import type { Tracker } from 'components/tracker/tracker';
-import { Modal } from 'ui/modal/modal';
-import { Button } from 'ui/button/button';
 import { BsXLg } from 'react-icons/bs';
-//styles
+
+import type { Tracker } from 'components/tracker/tracker';
+import { Button } from 'ui/button/button';
+import { Modal } from 'ui/modal/modal';
+
 import s from './tracker-view-modal.module.css';
 
 type TrackerViewModalProps = {

@@ -32,8 +32,10 @@
     -2px -2px 4px 0px rgba(255, 255, 255, 0.25) inset;
 
   --background: hsl(218 10% 18% / 1);
+  --control-background: hsl(218 10% 10% / 1);
   --box-background: hsl(218 10% 20% / 1);
   --box-background-on-surface: hsl(218 10% 16% / 1);
+  --box-background-on-second-surface: hsl(218 10% 16% / 1);
   --button-background: #24272c;
   --primary-stroke: rgba(151, 0, 255, 0.29);
   --primary: rgba(143, 0, 255, 1);

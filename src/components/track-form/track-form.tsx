@@ -1,13 +1,13 @@
-//libs
 import { useForm } from 'react-hook-form';
-//components
+import { BsX } from 'react-icons/bs';
+
 import type { Tracker } from 'components/tracker/tracker';
-//styles
-import s from './track-form.module.css';
-import { getFormError } from 'helpers/forms';
-import { BsXLg } from 'react-icons/bs';
-import { Input } from 'ui/input/input';
 import { Button } from 'ui/button/button';
+import { Input } from 'ui/input/input';
+import { Tooltip } from 'ui/tooltip/tooltip';
+import { getFormError } from 'helpers/forms';
+
+import s from './track-form.module.css';
 
 type TrackFormProps = {
   tracker: Tracker;
@@ -47,7 +47,9 @@ export function TrackForm({ tracker, onClose, onSubmit }: TrackFormProps) {
           add up
         </Button>
       </form>
-      <Button className={s.closeButton} onClick={onClose} icon={<BsXLg />} />
+      <Tooltip placement="top" content="Close">
+        <Button className={s.closeButton} onClick={onClose} icon={<BsX />} />
+      </Tooltip>
     </div>
   );
 }

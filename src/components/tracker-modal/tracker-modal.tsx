@@ -1,17 +1,15 @@
-//libs
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-//components
-import type { Tracker } from 'components/tracker/tracker';
-import { Modal } from 'ui/modal/modal';
 import { BsXLg } from 'react-icons/bs';
-//helpers
-import { getFormError } from 'helpers/forms';
-//styles
-import s from './tracker-modal.module.css';
-import { Input } from 'ui/input/input';
-import { Textarea } from 'ui/textarea/textarea';
+
+import type { Tracker } from 'components/tracker/tracker';
 import { Button } from 'ui/button/button';
+import { Input } from 'ui/input/input';
+import { Modal } from 'ui/modal/modal';
+import { Textarea } from 'ui/textarea/textarea';
+import { getFormError } from 'helpers/forms';
+
+import s from './tracker-modal.module.css';
 
 type TrackerModalProps = {
   onSubmit: (tracker: Tracker) => void;
@@ -26,7 +24,7 @@ const DEFAULT_TRACKER = {
   value: 0,
   initial_value: 0,
   target_value: 10,
-  unit: '',
+  unit: 'times(s)',
   finish_notes: '',
   not_finish_notes: '',
   reward: '',
@@ -48,8 +46,6 @@ export function TrackerModal({
   } = useForm<Tracker>({
     mode: 'onBlur',
   });
-
-  console.log('tracker', tracker);
 
   useEffect(() => {
     reset(tracker ? { ...tracker } : DEFAULT_TRACKER);
@@ -133,7 +129,7 @@ export function TrackerModal({
         <Input
           label="Unit of measurement*"
           placeholder="Unit of measurement"
-          {...register('unit', { required: true, maxLength: 125 })}
+          {...register('unit', { required: true, maxLength: 10 })}
           error={getFormError('unit of measurement', errors.unit?.type)}
         />
         <Button className={s.submit} type="submit">

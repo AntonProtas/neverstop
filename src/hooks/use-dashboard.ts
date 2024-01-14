@@ -1,11 +1,10 @@
-//libs
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { onSnapshot } from 'firebase/firestore';
-//helpers
-import { parseError } from 'helpers/data-transform';
-//api
+
 import { getDashboardsQuery } from 'api/dashboard';
+
+import { parseError } from 'helpers/data-transform';
 
 export type DashboardState = {
   id: string;

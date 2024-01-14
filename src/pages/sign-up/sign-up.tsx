@@ -1,19 +1,17 @@
-//libs
-import { useNavigate, Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { toast } from 'react-toastify';
-//api
-import { createUserRequest, signInWithGoogleRequest } from 'api/user';
-//helpers
-import { parseError } from 'helpers/data-transform';
-//constants
-import { APPLICATION_URLS } from 'utils/constants';
-//styles
-import s from './sign-up.module.css';
-import { Input } from 'ui/input/input';
-import { getFormError } from 'helpers/forms';
-import { Button } from 'ui/button/button';
 import { BsGoogle } from 'react-icons/bs';
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+
+import { createUserRequest, signInWithGoogleRequest } from 'api/user';
+
+import { Button } from 'ui/button/button';
+import { Input } from 'ui/input/input';
+import { APPLICATION_URLS } from 'utils/constants';
+import { parseError } from 'helpers/data-transform';
+import { getFormError } from 'helpers/forms';
+
+import s from './sign-up.module.css';
 
 type SignUpFormValues = {
   email: string;

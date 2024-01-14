@@ -1,11 +1,12 @@
 import {
   createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
-  signInWithEmailAndPassword,
 } from 'firebase/auth';
-import { auth, googleProvider } from './firesbase';
+
 import { createInitialDashboardRequest, getDashboardsCount } from './dashboard';
+import { auth, googleProvider } from './firesbase';
 
 export async function createUserRequest(email: string, password: string) {
   const { user } = await createUserWithEmailAndPassword(auth, email, password);

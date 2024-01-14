@@ -1,4 +1,5 @@
 import { Variants } from 'framer-motion';
+
 import { getIsMobile } from 'helpers/common';
 
 export function setAnimation(animation: Variants) {
@@ -9,13 +10,14 @@ export function setAnimation(animation: Variants) {
   return animation;
 }
 
-export const boxButtonsAnimation = {
+export const boxButtonsAnimation: Variants = {
   hidden: { opacity: 1, scale: 0 },
   visible: {
     opacity: 1,
     scale: 1,
     transition: {
-      delayChildren: 0.2,
+      duration: 0.2,
+      delayChildren: 0.1,
       staggerChildren: 0.1,
     },
   },

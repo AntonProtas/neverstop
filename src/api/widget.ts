@@ -1,16 +1,17 @@
 import {
   addDoc,
-  doc,
+  arrayRemove,
   arrayUnion,
   collection,
+  deleteDoc,
+  doc,
   Timestamp,
   updateDoc,
-  deleteDoc,
-  arrayRemove,
 } from 'firebase/firestore';
 
-import db from './firesbase';
 import { Tracker } from 'components/tracker/tracker';
+
+import db from './firesbase';
 
 export async function createWidgetRequest(dashboardId: string, widget: Tracker) {
   const createdWidget = await addDoc(collection(db, 'dashboards', dashboardId, 'widgets'), {

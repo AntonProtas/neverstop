@@ -1,12 +1,11 @@
-//libs
-import { Variants, motion, HTMLMotionProps } from 'framer-motion';
+import { ButtonHTMLAttributes, forwardRef, ReactNode, Ref } from 'react';
 import cn from 'classnames';
-import { ButtonHTMLAttributes, ReactNode } from 'react';
-//types
+import { HTMLMotionProps, motion, Variants } from 'framer-motion';
+
 import { TextSize } from 'ui/typography/typography';
-//styles
-import s from './button.module.css';
 import typographyS from 'ui/typography/typography.module.css';
+
+import s from './button.module.css';
 
 export type ButtonProps = HTMLMotionProps<'button'> & {
   className?: string;
@@ -16,17 +15,14 @@ export type ButtonProps = HTMLMotionProps<'button'> & {
   variants?: Variants;
 };
 
-export function Button({
-  className,
-  children,
-  icon,
-  textSize = 'p4',
-  variants,
-  ...props
-}: ButtonProps) {
+export const Button = forwardRef(function Button(
+  { className, children, icon, textSize = 'p4', variants, ...props }: ButtonProps,
+  ref: Ref<HTMLButtonElement>,
+) {
   if (variants) {
     return (
       <motion.button
+        ref={ref}
         className={cn(s.box, className, typographyS[textSize], {
           [s.iconBox]: !children,
         })}
@@ -41,6 +37,7 @@ export function Button({
 
   return (
     <button
+      ref={ref}
       className={cn(s.box, className, typographyS[textSize], {
         [s.iconBox]: !children,
       })}
@@ -50,4 +47,4 @@ export function Button({
       {children}
     </button>
   );
-}
+});
