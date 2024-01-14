@@ -14,6 +14,10 @@ export type ReactModalProps = ModalProps & ReactModal.Props;
 export function Modal({ isOpen, className, children, ...props }: ReactModalProps) {
   useEffect(() => {
     document.body.style.overflow = isOpen ? 'hidden' : 'auto';
+
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
   }, [isOpen]);
 
   return (
