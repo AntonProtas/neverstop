@@ -1,7 +1,7 @@
 .box {
   padding: 64px 42px 72px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(490px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
   padding-bottom: 192px;
   padding-top: 64px;
   gap: 32px;

@@ -1,7 +1,6 @@
-//libs
+import { forwardRef, InputHTMLAttributes, Ref } from 'react';
 import cn from 'classnames';
-import { InputHTMLAttributes, Ref, forwardRef } from 'react';
-//styles
+
 import s from './input.module.css';
 
 export type InputProps = InputHTMLAttributes<HTMLInputElement> & {

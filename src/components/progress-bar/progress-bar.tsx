@@ -1,6 +1,5 @@
-//libs
 import cn from 'classnames';
-//styles
+
 import s from './progress-bar.module.css';
 
 type ProgressBarProps = {
@@ -14,33 +13,27 @@ type ProgressBarProps = {
 export function ProgressBar({ value, className, start, end, unit }: ProgressBarProps) {
   const percentages = Math.floor((value / end) * 100);
 
+  const spaceForPercentages = percentages < 10 ? 4 : -24;
+
   return (
     <div className={cn(s.box, className)}>
+      <div className={s.value}>
+        <span>{value}</span>
+        {unit && <span> {unit}</span>}
+      </div>
       <div className={s.progressBox}>
         {percentages !== 0 && (
           <>
             <span
               style={{
-                left: `calc(${percentages}% - 24px)`,
+                left: `calc(${percentages}% + ${spaceForPercentages}px)`,
                 transform: 'translate(-50%, 0)',
               }}
               className={s.percentages}
             >
+              <span></span>
               {percentages}%
             </span>
-            <div
-              className={s.value}
-              style={{
-                left:
-                  percentages <= 10
-                    ? `calc(${percentages}% + 48px)`
-                    : `calc(${percentages}% - 48px)`,
-                transform: 'translate(-50%, 0)',
-              }}
-            >
-              {value}
-              {unit && <span> {unit}</span>}
-            </div>
             <div
               style={{
                 width: `${percentages}%`,

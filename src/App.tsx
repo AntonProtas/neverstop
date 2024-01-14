@@ -1,14 +1,15 @@
-//libs
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { TouchBackend } from 'react-dnd-touch-backend';
 import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-//components
-import { Router } from 'components/router/router';
+
 import { AuthProvider } from 'context/auth';
-//helpers
+
+import { Router } from 'components/router/router';
 import { getIsMobile } from 'helpers/common';
+
+import 'react-toastify/dist/ReactToastify.css';
+import 'react-tooltip/dist/react-tooltip.css';
 
 function App() {
   return (

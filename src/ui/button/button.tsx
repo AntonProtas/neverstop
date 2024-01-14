@@ -1,12 +1,13 @@
-//libs
-import { Variants, motion, HTMLMotionProps } from 'framer-motion';
-import cn from 'classnames';
 import { ButtonHTMLAttributes, ReactNode } from 'react';
-//types
+import React from 'react';
+import { Tooltip as ReactTooltip } from 'react-tooltip';
+import cn from 'classnames';
+import { HTMLMotionProps, motion, Variants } from 'framer-motion';
+
 import { TextSize } from 'ui/typography/typography';
-//styles
-import s from './button.module.css';
 import typographyS from 'ui/typography/typography.module.css';
+
+import s from './button.module.css';
 
 export type ButtonProps = HTMLMotionProps<'button'> & {
   className?: string;
@@ -14,6 +15,7 @@ export type ButtonProps = HTMLMotionProps<'button'> & {
   icon?: ReactNode;
   textSize?: TextSize;
   variants?: Variants;
+  tooltip?: string;
 };
 
 export function Button({
@@ -22,6 +24,7 @@ export function Button({
   icon,
   textSize = 'p4',
   variants,
+  tooltip,
   ...props
 }: ButtonProps) {
   if (variants) {

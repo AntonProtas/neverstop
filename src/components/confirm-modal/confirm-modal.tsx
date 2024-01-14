@@ -1,8 +1,7 @@
-//ui
 import { Button } from 'ui/button/button';
 import { Modal } from 'ui/modal/modal';
 import { Typography } from 'ui/typography/typography';
-//styles
+
 import s from './confirm-modal.module.css';
 
 type ConfirmModalProps = {

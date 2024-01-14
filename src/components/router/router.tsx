@@ -1,12 +1,12 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import { Dashboard } from 'pages/dashboard/dashboard';
-import { SignUp } from 'pages/sign-up/sign-up';
 import { SignIn } from 'pages/sign-in/sign-in';
+import { SignUp } from 'pages/sign-up/sign-up';
+import { APPLICATION_URLS } from 'utils/constants';
+
 import { PrivateRoute } from './private-route';
 import { SmartRedirect } from './smart-redirect';
-
-import { APPLICATION_URLS } from 'utils/constants';
 
 export function Router() {
   return (

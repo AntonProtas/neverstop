@@ -1,8 +1,7 @@
-//libs
-import cn from 'classnames';
-import { useEffect, type ReactNode } from 'react';
+import { type ReactNode, useEffect } from 'react';
 import ReactModal from 'react-modal';
-//styles
+import cn from 'classnames';
+
 import s from './modal.module.css';
 
 type ModalProps = {

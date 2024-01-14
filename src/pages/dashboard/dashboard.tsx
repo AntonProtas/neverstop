@@ -1,38 +1,34 @@
-//libs
-import { useMemo, useState, useCallback } from 'react';
+import { useCallback, useMemo, useState } from 'react';
+import { AiOutlineLogin } from 'react-icons/ai';
+import { BsPlusCircleFill } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-//context
-import { UserAuth } from 'context/auth';
-//components
-import { Tracker } from 'components/tracker/tracker';
-import { TrackerModal } from 'components/tracker-modal/tracker-modal';
-import { ConfirmModal } from 'components/confirm-modal/confirm-modal';
-import { TrackerViewModal } from 'components/tracker-view-modal/tracker-view-modal';
-//hooks
-import { useDashboard } from 'hooks/use-dashboard';
-import { useWidgets } from 'hooks/use-widgets';
-//api
+import { AnimatePresence, motion } from 'framer-motion';
+
+import { updateOrderRequest } from 'api/dashboard';
 import { logOutRequest } from 'api/user';
 import {
-  createWidgetRequest,
-  updateWidgetRequest,
-  deleteWidgetRequest,
   addTrackerProgressRequest,
+  createWidgetRequest,
+  deleteWidgetRequest,
+  updateWidgetRequest,
 } from 'api/widget';
-//helpers
-import { parseError } from 'helpers/data-transform';
-import { updateOrderRequest } from 'api/dashboard';
-//constants
-import { APPLICATION_URLS } from 'utils/constants';
-//styles
-import s from './dashboard.module.css';
-import { toHash } from 'helpers/data-transform';
-import { AnimatePresence, motion } from 'framer-motion';
-import { getIsMobile } from 'helpers/common';
+import { useDashboard } from 'hooks/use-dashboard';
+import { useWidgets } from 'hooks/use-widgets';
+import { UserAuth } from 'context/auth';
+
+import { ConfirmModal } from 'components/confirm-modal/confirm-modal';
+import { Tracker } from 'components/tracker/tracker';
+import { TrackerModal } from 'components/tracker-modal/tracker-modal';
+import { TrackerViewModal } from 'components/tracker-view-modal/tracker-view-modal';
 import { Button } from 'ui/button/button';
-import { BsPlusCircleFill } from 'react-icons/bs';
 import { Loader } from 'ui/loader/loader';
+import { APPLICATION_URLS } from 'utils/constants';
+import { getIsMobile } from 'helpers/common';
+import { parseError } from 'helpers/data-transform';
+import { toHash } from 'helpers/data-transform';
+
+import s from './dashboard.module.css';
 
 type ModalsType = 'view' | 'create' | 'edit' | 'add-progress' | 'delete' | null;
 
@@ -162,13 +158,10 @@ export function Dashboard() {
         <Button
           textSize="p1"
           onClick={() => setModal({ type: 'create' })}
+          tooltip="Create widget"
           icon={<BsPlusCircleFill color="#739993" />}
-        >
-          add tracker
-        </Button>
-        <Button textSize="p1" onClick={onLogout}>
-          log out
-        </Button>
+        />
+        <Button textSize="p1" onClick={onLogout} icon={<AiOutlineLogin color="#D18080" />} />
       </div>
       {(isDashboardLoading || isWidgetsLoading) && <Loader />}
       <AnimatePresence initial={false}>

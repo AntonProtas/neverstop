@@ -2,7 +2,6 @@ import { memo, ReactNode, useLayoutEffect, useRef, useState } from 'react';
 import cn from 'classnames';
 
 import typographyStyles from './typography.module.css';
-
 import s from './typography.module.css';
 
 export type TextSize = 'h1' | 'h2' | 'h3' | 'p1' | 'p2' | 'p3' | 'p4' | 'p5' | 'p6';

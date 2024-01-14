@@ -1,13 +1,12 @@
-//libs
 import { useForm } from 'react-hook-form';
-//components
-import type { Tracker } from 'components/tracker/tracker';
-//styles
-import s from './track-form.module.css';
-import { getFormError } from 'helpers/forms';
 import { BsXLg } from 'react-icons/bs';
-import { Input } from 'ui/input/input';
+
+import type { Tracker } from 'components/tracker/tracker';
 import { Button } from 'ui/button/button';
+import { Input } from 'ui/input/input';
+import { getFormError } from 'helpers/forms';
+
+import s from './track-form.module.css';
 
 type TrackFormProps = {
   tracker: Tracker;

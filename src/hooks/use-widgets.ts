@@ -1,13 +1,11 @@
-//libs
 import { useEffect, useState } from 'react';
-import { onSnapshot } from 'firebase/firestore';
 import { toast } from 'react-toastify';
-//helpers
-import { parseError } from 'helpers/data-transform';
-//api
+import { onSnapshot } from 'firebase/firestore';
+
 import { getWidgetsQuery } from 'api/widget';
-//types
+
 import type { Tracker } from 'components/tracker/tracker';
+import { parseError } from 'helpers/data-transform';
 
 export function useWidgets({ dashboardId }: { dashboardId?: string }) {
   const [widgetsState, setWidgetsState] = useState<Tracker[]>([]);

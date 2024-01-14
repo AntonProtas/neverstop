@@ -1,12 +1,12 @@
 import {
   addDoc,
   collection,
-  Timestamp,
-  query,
-  where,
-  updateDoc,
   doc,
   getDocs,
+  query,
+  Timestamp,
+  updateDoc,
+  where,
 } from 'firebase/firestore';
 
 import db from './firesbase';
