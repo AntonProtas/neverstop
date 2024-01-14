@@ -14,6 +14,7 @@ import { motion } from 'framer-motion';
 import { ProgressBar } from 'components/progress-bar/progress-bar';
 import { TrackForm, TrackFormValues } from 'components/track-form/track-form';
 import { Button } from 'ui/button/button';
+import { Tooltip } from 'ui/tooltip/tooltip';
 import { DragItem, hoverDndElement } from './tracker.helpers';
 import {
   boxButtonsAnimation,
@@ -139,11 +140,13 @@ export function Tracker({
         <>
           <div className={s.header}>
             <span className={s.title}>{tracker.name}</span>
-            <Button
-              className={s.dotsButton}
-              icon={isOpenControls ? <BsX /> : <BsThreeDots />}
-              onClick={isOpenControls ? onCloseControls : onOpenControls}
-            />
+            <Tooltip placement="top" content={`${isOpenControls ? 'Close' : 'More'} `}>
+              <Button
+                className={s.dotsButton}
+                icon={isOpenControls ? <BsX /> : <BsThreeDots />}
+                onClick={isOpenControls ? onCloseControls : onOpenControls}
+              />
+            </Tooltip>
           </div>
           <ProgressBar
             className={s.progress}
@@ -162,31 +165,39 @@ export function Tracker({
           animate="visible"
         >
           {tracker.target_value > tracker.value && (
+            <Tooltip content="Add up" placement="top">
+              <Button
+                className={s.button}
+                variants={setAnimation(buttonAnimation)}
+                onClick={trackModeOpen}
+                icon={<BsPlusCircleFill color="#739993" />}
+              />
+            </Tooltip>
+          )}
+          <Tooltip content="Edit" placement="top">
             <Button
               className={s.button}
               variants={setAnimation(buttonAnimation)}
-              onClick={trackModeOpen}
-              icon={<BsPlusCircleFill color="#739993" />}
+              onClick={editClick}
+              icon={<BsFillPencilFill color="#E6B188" />}
             />
-          )}
-          <Button
-            className={s.button}
-            variants={setAnimation(buttonAnimation)}
-            onClick={editClick}
-            icon={<BsFillPencilFill color="#E6B188" />}
-          />
-          <Button
-            className={s.button}
-            variants={setAnimation(buttonAnimation)}
-            onClick={viewClick}
-            icon={<BsFillEyeFill color="#525475" />}
-          />
-          <Button
-            className={s.button}
-            variants={setAnimation(buttonAnimation)}
-            onClick={deleteClick}
-            icon={<BsFillTrashFill color="#D18080" />}
-          />
+          </Tooltip>
+          <Tooltip content="View" placement="top">
+            <Button
+              className={s.button}
+              variants={setAnimation(buttonAnimation)}
+              onClick={viewClick}
+              icon={<BsFillEyeFill color="#525475" />}
+            />
+          </Tooltip>
+          <Tooltip content="Delete" placement="top">
+            <Button
+              className={s.button}
+              variants={setAnimation(buttonAnimation)}
+              onClick={deleteClick}
+              icon={<BsFillTrashFill color="#D18080" />}
+            />
+          </Tooltip>
         </motion.div>
       )}
     </div>

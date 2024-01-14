@@ -1,6 +1,4 @@
-import { ButtonHTMLAttributes, ReactNode } from 'react';
-import React from 'react';
-import { Tooltip as ReactTooltip } from 'react-tooltip';
+import { ButtonHTMLAttributes, forwardRef, ReactNode, Ref } from 'react';
 import cn from 'classnames';
 import { HTMLMotionProps, motion, Variants } from 'framer-motion';
 
@@ -15,21 +13,16 @@ export type ButtonProps = HTMLMotionProps<'button'> & {
   icon?: ReactNode;
   textSize?: TextSize;
   variants?: Variants;
-  tooltip?: string;
 };
 
-export function Button({
-  className,
-  children,
-  icon,
-  textSize = 'p4',
-  variants,
-  tooltip,
-  ...props
-}: ButtonProps) {
+export const Button = forwardRef(function Button(
+  { className, children, icon, textSize = 'p4', variants, ...props }: ButtonProps,
+  ref: Ref<HTMLButtonElement>,
+) {
   if (variants) {
     return (
       <motion.button
+        ref={ref}
         className={cn(s.box, className, typographyS[textSize], {
           [s.iconBox]: !children,
         })}
@@ -44,6 +37,7 @@ export function Button({
 
   return (
     <button
+      ref={ref}
       className={cn(s.box, className, typographyS[textSize], {
         [s.iconBox]: !children,
       })}
@@ -53,4 +47,4 @@ export function Button({
       {children}
     </button>
   );
-}
+});

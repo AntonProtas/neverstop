@@ -10,7 +10,7 @@
   color: #e1ecff;
   position: relative;
   height: 100%;
-  max-height: 100%;
+  min-height: 100%;
   box-sizing: border-box;
 }
 
@@ -37,6 +37,7 @@
 
 .form {
   height: 100%;
+  min-height: 100%;
 }
 
 .title {
@@ -69,23 +70,4 @@
 .addingFormBox {
   box-sizing: border-box;
   height: 100%;
-}
-
-@media (max-width: 580px) {
-  .controls {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr;
-    gap: 12px;
-    bottom: -108px;
-  }
-
-  .withControls {
-    margin: 48px 0;
-  }
-
-  .box,
-  .withControls {
-    transition: none;
-  }
 }

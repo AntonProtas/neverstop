@@ -24,7 +24,7 @@ const DEFAULT_TRACKER = {
   value: 0,
   initial_value: 0,
   target_value: 10,
-  unit: '',
+  unit: 'times(s)',
   finish_notes: '',
   not_finish_notes: '',
   reward: '',
@@ -46,8 +46,6 @@ export function TrackerModal({
   } = useForm<Tracker>({
     mode: 'onBlur',
   });
-
-  console.log('tracker', tracker);
 
   useEffect(() => {
     reset(tracker ? { ...tracker } : DEFAULT_TRACKER);
@@ -131,8 +129,7 @@ export function TrackerModal({
         <Input
           label="Unit of measurement*"
           placeholder="Unit of measurement"
-          defaultValue={'times(s)'}
-          {...register('unit', { maxLength: 10 })}
+          {...register('unit', { required: true, maxLength: 10 })}
           error={getFormError('unit of measurement', errors.unit?.type)}
         />
         <Button className={s.submit} type="submit">

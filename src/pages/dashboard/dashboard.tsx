@@ -23,6 +23,7 @@ import { TrackerModal } from 'components/tracker-modal/tracker-modal';
 import { TrackerViewModal } from 'components/tracker-view-modal/tracker-view-modal';
 import { Button } from 'ui/button/button';
 import { Loader } from 'ui/loader/loader';
+import { Tooltip } from 'ui/tooltip/tooltip';
 import { APPLICATION_URLS } from 'utils/constants';
 import { getIsMobile } from 'helpers/common';
 import { parseError } from 'helpers/data-transform';
@@ -153,19 +154,22 @@ export function Dashboard() {
   };
 
   return (
-    <>
+    <div className={s.box}>
       <div className={s.controls}>
-        <Button
-          textSize="p1"
-          onClick={() => setModal({ type: 'create' })}
-          tooltip="Create widget"
-          icon={<BsPlusCircleFill color="#739993" />}
-        />
-        <Button textSize="p1" onClick={onLogout} icon={<AiOutlineLogin color="#D18080" />} />
+        <Tooltip content="Create tracker">
+          <Button
+            textSize="p1"
+            onClick={() => setModal({ type: 'create' })}
+            icon={<BsPlusCircleFill color="#739993" />}
+          />
+        </Tooltip>
+        <Tooltip content="Log out">
+          <Button textSize="p1" onClick={onLogout} icon={<AiOutlineLogin color="#D18080" />} />
+        </Tooltip>
       </div>
       {(isDashboardLoading || isWidgetsLoading) && <Loader />}
       <AnimatePresence initial={false}>
-        <div className={s.box}>
+        <div className={s.trackers}>
           {(order || [])
             .filter((id) => id in hashIdToWidget)
             .map((id, index) => (
@@ -220,19 +224,17 @@ export function Dashboard() {
         onClose={closeModal}
         onSubmit={modal.type === 'edit' ? updateWidget : createWidget}
       />
-      {modal.tracker && (
-        <TrackerViewModal
-          isOpen={modal.type === 'view'}
-          tracker={modal.tracker}
+      {modal.type == 'view' && modal.tracker && (
+        <TrackerViewModal isOpen tracker={modal.tracker} onClose={closeModal} />
+      )}
+      {modal.type === 'delete' && (
+        <ConfirmModal
+          text={`Do u really want to delete widget "${modal.tracker?.name}" ?`}
+          isOpen
           onClose={closeModal}
+          onSubmit={deleteWidget}
         />
       )}
-      <ConfirmModal
-        text={`Do u really want to delete widget "${modal.tracker?.name}" ?`}
-        isOpen={modal.type === 'delete'}
-        onClose={closeModal}
-        onSubmit={deleteWidget}
-      />
-    </>
+    </div>
   );
 }

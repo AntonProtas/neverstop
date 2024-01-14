@@ -13,15 +13,14 @@ export type ReactModalProps = ModalProps & ReactModal.Props;
 
 export function Modal({ isOpen, className, children, ...props }: ReactModalProps) {
   useEffect(() => {
-    if (document) {
-      document.body.style.overflow = isOpen ? 'hidden' : 'auto';
-    }
+    document.body.style.overflow = isOpen ? 'hidden' : 'auto';
   }, [isOpen]);
 
   return (
     <ReactModal
       className={cn(s.box, className)}
       isOpen={isOpen}
+      preventScroll
       ariaHideApp={false}
       portalClassName={s.isSkipFocus}
       overlayClassName={s.overlay}

@@ -15,7 +15,7 @@ function App() {
   return (
     <AuthProvider>
       <ToastContainer
-        position="bottom-center"
+        position="top-left"
         autoClose={4000}
         hideProgressBar
         newestOnTop
