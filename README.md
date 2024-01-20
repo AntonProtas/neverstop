@@ -1,1 +1,1 @@
-# React + TypeScript + Vite + Виктор
+# React + TypeScript + Vite
