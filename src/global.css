@@ -31,8 +31,13 @@
   --inner-shadows: 2px 2px 4px 0px rgba(0, 0, 0, 0.25) inset,
     -2px -2px 4px 0px rgba(255, 255, 255, 0.25) inset;
 
+  --light-button-shadows: 0.5px 1px 1px 0px rgba(255, 255, 255, 0.25) inset,
+    8px 10px 16px 0px rgba(0, 0, 0, 0.19);
+
   --background: hsl(218 10% 18% / 1);
   --control-background: hsl(218 10% 10% / 1);
+  --hover-control-background: hsl(218 10% 7% / 1);
+  --active-control-background: hsl(218 10% 2% / 1);
   --box-background: hsl(218 10% 20% / 1);
   --box-background-on-surface: hsl(218 10% 16% / 1);
   --box-background-on-second-surface: hsl(218 10% 16% / 1);
@@ -44,7 +49,7 @@
   --main-text: hsl(218, 100%, 94%);
   --error: #c92c6d;
 
-  background: var(--background);
+  background: hsl(218 10% 16% / 1);
 }
 
 html,

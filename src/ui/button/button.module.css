@@ -8,18 +8,21 @@
   border: none;
   border-radius: 12px;
   background: var(--control-background);
-  box-shadow: var(--button-shadows);
+  box-shadow: var(--button-shadows-hover);
   color: var(--main-text);
   text-transform: capitalize;
 }
 
 .box:hover {
-  transition: all 0.3s ease 0.1s;
-  box-shadow: var(--button-shadows-hover);
+  background-color: var(--hover-control-background);
+  transition: all 0.1s ease 0.1s;
 }
 
 .box:active {
-  box-shadow: var(--button-inner-shadows);
+  background-color: var(--active-control-background);
+  transition: all 0.2s ease 0.1s;
+  box-shadow: var(--light-inner-shadow);
+  transform: scale(0.97) translateY(-0.4px);
 }
 
 .box svg {
@@ -28,6 +31,7 @@
 }
 
 .iconBox {
+  box-shadow: var(--light-button-shadows);
   display: flex;
   align-items: center;
   justify-content: center;

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { BsXLg } from 'react-icons/bs';
+import { BsX } from 'react-icons/bs';
 
 import type { Tracker } from 'components/tracker/tracker';
 import { Button } from 'ui/button/button';
@@ -64,7 +64,11 @@ export function TrackerModal({
       isOpen={isOpen}
     >
       <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
-        <Button className={s.closeButton} onClick={onClose} icon={<BsXLg />} />
+        <Button
+          className={s.closeButton}
+          onClick={onClose}
+          icon={<BsX color="var(--second-text)" />}
+        />
         <Input
           label="Name*"
           placeholder="Name"

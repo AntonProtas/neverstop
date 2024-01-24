@@ -12,11 +12,25 @@
 .controls {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 8px;
   position: fixed;
   right: 12px;
   bottom: 12px;
   z-index: 2;
+}
+
+.controls button:first-of-type {
+  padding: 16px;
+}
+
+.controls button:first-of-type svg {
+  height: 32px;
+  width: 32px;
+}
+
+.controls button:last-of-type {
+  width: fit-content;
+  margin-left: auto;
 }
 
 @media (max-width: 580px) {
