@@ -72,7 +72,3 @@
   box-sizing: border-box;
   height: 100%;
 }
-
-.dotsButton svg {
-  color: var(--second-text);
-}
